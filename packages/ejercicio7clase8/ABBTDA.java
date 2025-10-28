@@ -1,0 +1,41 @@
+package ejercicio7clase8;
+
+// ============================================
+// INTERFAZ TDA ABB
+// ============================================
+/**
+ * Interfaz para un Tipo de Dato Abstracto (TDA) de Árbol Binario de Búsqueda (ABB).
+ * Define las operaciones básicas que debe soportar un ABB.
+ * @param <E> Tipo de elementos que almacenará el ABB, deben ser comparables.
+ */
+public interface ABBTDA<E extends Comparable<E>> {
+    /**
+     * Inserta un nuevo elemento en el ABB.
+     * @param element El elemento a insertar.
+     */
+    void insert(E element);
+
+    /**
+     * Elimina un elemento existente del ABB.
+     * @param element El elemento a eliminar.
+     */
+    void remove(E element);
+
+    /**
+     * Verifica si un elemento está presente en el ABB.
+     * @param element El elemento a buscar.
+     * @return true si el elemento está en el ABB, false en caso contrario.
+     */
+    boolean contains(E element);
+
+    /**
+     * Inicializa el ABB, dejándolo vacío.
+     */
+    void initialize();
+
+    /**
+     * Realiza un recorrido in-order del ABB y devuelve una cadena con los elementos.
+     * @return Una cadena que representa los elementos del ABB en orden ascendente.
+     */
+    String inOrder();
+}
