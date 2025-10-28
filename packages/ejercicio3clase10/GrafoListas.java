@@ -1,72 +1,14 @@
+package ejercicio3clase10;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 // ============================================
-// INTERFAZ TDA GRAFO
-// ============================================
-interface GrafoTDA<E> {
-    void inicializar();
-    void agregarVertice(E vertice);
-    void eliminarVertice(E vertice);
-    void agregarArista(E origen, E destino, int peso);
-    void eliminarArista(E origen, E destino);
-    boolean existeArista(E origen, E destino);
-    int pesoArista(E origen, E destino);
-    List<E> vertices();
-    
-    // Métodos adicionales del ejercicio 3
-    Set<E> verticesAislados();
-    Set<E> verticesPuente(E origen, E destino);
-}
-
-// ============================================
-// CLASE NODO ARISTA
-// ============================================
-class NodoArista<E> {
-    private E destino;
-    private int peso;
-    private NodoArista<E> siguiente;
-
-    public NodoArista(E destino, int peso) {
-        this.destino = destino;
-        this.peso = peso;
-        this.siguiente = null;
-    }
-
-    public E getDestino() { return destino; }
-    public int getPeso() { return peso; }
-    public void setPeso(int peso) { this.peso = peso; }
-    public NodoArista<E> getSiguiente() { return siguiente; }
-    public void setSiguiente(NodoArista<E> siguiente) { this.siguiente = siguiente; }
-}
-
-// ============================================
-// CLASE NODO VÉRTICE
-// ============================================
-class NodoVertice<E> {
-    private E valor;
-    private NodoArista<E> adyacentes; // Lista de aristas salientes
-    private NodoVertice<E> siguiente;
-
-    public NodoVertice(E valor) {
-        this.valor = valor;
-        this.adyacentes = null;
-        this.siguiente = null;
-    }
-
-    public E getValor() { return valor; }
-    public NodoArista<E> getAdyacentes() { return adyacentes; }
-    public void setAdyacentes(NodoArista<E> adyacentes) { this.adyacentes = adyacentes; }
-    public NodoVertice<E> getSiguiente() { return siguiente; }
-    public void setSiguiente(NodoVertice<E> siguiente) { this.siguiente = siguiente; }
-}
-
-// ============================================
 // IMPLEMENTACIÓN: GRAFO CON LISTAS DE ADYACENCIA
 // ============================================
-class GrafoListas<E> implements GrafoTDA<E> {
+public class GrafoListas<E> implements GrafoTDA<E> {
     private NodoVertice<E> cabeza;
     private int cantidadVertices;
 
@@ -443,9 +385,9 @@ class GrafoListas<E> implements GrafoTDA<E> {
     // ============================================
 
     public void imprimirGrafo() {
-        System.out.println("\n╔════════════════════════════════════════════╗");
-        System.out.println("║      GRAFO - LISTAS DE ADYACENCIA         ║");
-        System.out.println("╚════════════════════════════════════════════╝\n");
+        System.out.println("\n------------------------------------------------");
+        System.out.println("|      GRAFO - LISTAS DE ADYACENCIA         |");
+        System.out.println("------------------------------------------------\n");
 
         if (cabeza == null) {
             System.out.println("El grafo está vacío.\n");
@@ -474,9 +416,9 @@ class GrafoListas<E> implements GrafoTDA<E> {
     }
 
     public void imprimirEstadisticas() {
-        System.out.println("╔════════════════════════════════════════════╗");
-        System.out.println("║       ESTADÍSTICAS DEL GRAFO              ║");
-        System.out.println("╚════════════════════════════════════════════╝");
+        System.out.println("------------------------------------------------");
+        System.out.println("|       ESTADÍSTICAS DEL GRAFO              |");
+        System.out.println("------------------------------------------------");
         System.out.println("Cantidad de vértices: " + cantidadVertices);
         
         int totalAristas = 0;
@@ -498,151 +440,7 @@ class GrafoListas<E> implements GrafoTDA<E> {
         if (cantidadVertices > 0) {
             System.out.println("Grado máximo de salida: " + gradoMax);
             System.out.println("Grado mínimo de salida: " + gradoMin);
-            System.out.printf("Grado promedio: %.2f\n", (double) totalAristas / cantidadVertices);
-        }
-        System.out.println();
-    }
-}
-
-// ============================================
-// PROGRAMA PRINCIPAL DE PRUEBA
-// ============================================
-public class App {
-    public static void main(String[] args) {
-        GrafoTDA<String> grafo = new GrafoListas<>();
-        grafo.inicializar();
-
-        System.out.println("╔════════════════════════════════════════════╗");
-        System.out.println("║  GRAFO CON LISTAS DE ADYACENCIA           ║");
-        System.out.println("║  Ejercicio 3 - Clase 10                   ║");
-        System.out.println("╚════════════════════════════════════════════╝\n");
-
-        // ============================================
-        // PASO 1: Crear el grafo
-        // ============================================
-        System.out.println("═══ PASO 1: Agregando vértices ═══");
-        String[] vertices = {"A", "B", "C", "D", "E", "F", "G", "H"};
-        for (String v : vertices) {
-            grafo.agregarVertice(v);
-        }
-        System.out.println("✓ Vértices agregados: A, B, C, D, E, F, G, H\n");
-
-        // ============================================
-        // PASO 2: Agregar aristas (diseñadas para demostrar los ejercicios)
-        // ============================================
-        System.out.println("═══ PASO 2: Agregando aristas ═══");
-        
-        // Crear conexiones que generen puentes
-        grafo.agregarArista("A", "B", 5);
-        grafo.agregarArista("A", "C", 3);
-        grafo.agregarArista("B", "D", 2);
-        grafo.agregarArista("C", "D", 4);
-        grafo.agregarArista("D", "E", 6);
-        grafo.agregarArista("E", "F", 1);
-        
-        // G está aislado (sin aristas entrantes ni salientes)
-        // H también está aislado
-        
-        System.out.println("✓ Aristas agregadas\n");
-
-        // Mostrar el grafo
-        ((GrafoListas<String>) grafo).imprimirGrafo();
-        ((GrafoListas<String>) grafo).imprimirEstadisticas();
-
-        // ============================================
-        // EJERCICIO 3.1: Vértices Aislados
-        // ============================================
-        System.out.println("╔════════════════════════════════════════════╗");
-        System.out.println("║  EJERCICIO 3.1: Vértices Aislados        ║");
-        System.out.println("╚════════════════════════════════════════════╝\n");
-
-        Set<String> aislados = grafo.verticesAislados();
-        System.out.println("Vértices aislados: " + aislados);
-        
-        if (aislados.isEmpty()) {
-            System.out.println("(No hay vértices aislados)");
-        } else {
-            System.out.println("\nExplicación:");
-            for (String v : aislados) {
-                System.out.println("  - " + v + ": no tiene aristas salientes ni entrantes");
-            }
-        }
-
-        // ============================================
-        // EJERCICIO 3.2: Vértices Puente
-        // ============================================
-        System.out.println("\n╔════════════════════════════════════════════╗");
-        System.out.println("║  EJERCICIO 3.2: Vértices Puente          ║");
-        System.out.println("╚════════════════════════════════════════════╝\n");
-
-        // Casos de prueba
-        String[][] casosPrueba = {
-            {"A", "D"},
-            {"A", "E"},
-            {"B", "F"},
-            {"C", "E"},
-            {"A", "F"}
-        };
-
-        for (String[] caso : casosPrueba) {
-            String origen = caso[0];
-            String destino = caso[1];
-            
-            try {
-                Set<String> puentes = grafo.verticesPuente(origen, destino);
-                System.out.printf("Puentes entre %s y %s: ", origen, destino);
-                
-                if (puentes.isEmpty()) {
-                    System.out.println("(ninguno)");
-                } else {
-                    System.out.println(puentes);
-                    System.out.println("  Explicación:");
-                    for (String p : puentes) {
-                        System.out.printf("    - %s → %s → %s\n", origen, p, destino);
-                    }
-                }
-            } catch (IllegalArgumentException e) {
-                System.out.printf("Puentes entre %s y %s: Error - %s\n", 
-                                origen, destino, e.getMessage());
-            }
-            System.out.println();
-        }
-
-        // ============================================
-        // DEMOSTRACIÓN ADICIONAL
-        // ============================================
-        System.out.println("╔════════════════════════════════════════════╗");
-        System.out.println("║  DEMOSTRACIÓN: Agregar y Quitar Aristas  ║");
-        System.out.println("╚════════════════════════════════════════════╝\n");
-
-        System.out.println("Agregando aristas para conectar vértices aislados...");
-        grafo.agregarArista("G", "H", 10);
-        System.out.println("✓ Arista G → H agregada\n");
-
-        ((GrafoListas<String>) grafo).imprimirGrafo();
-
-        System.out.println("Verificando vértices aislados nuevamente:");
-        aislados = grafo.verticesAislados();
-        System.out.println("Vértices aislados: " + aislados);
-        System.out.println("(G ya no está aislado porque tiene arista saliente)");
-        System.out.println("(H ya no está aislado porque tiene arista entrante)\n");
-
-        // ============================================
-        // ANÁLISIS DE COMPLEJIDAD
-        // ============================================
-        System.out.println("╔════════════════════════════════════════════╗");
-        System.out.println("║  ANÁLISIS DE COMPLEJIDAD                  ║");
-        System.out.println("╚════════════════════════════════════════════╝");
-        System.out.println("verticesAislados(): O(n×k)");
-        System.out.println("  - n = cantidad de vértices");
-        System.out.println("  - k = promedio de aristas por vértice");
-        System.out.println("  - Requiere 3 pasadas por el grafo");
-        System.out.println();
-        System.out.println("verticesPuente(origen, destino): O(k₁×k₂)");
-        System.out.println("  - k₁ = aristas salientes del origen");
-        System.out.println("  - k₂ = aristas salientes de cada candidato");
-        System.out.println("  - En el peor caso (grafo completo): O(n²)");
-        System.out.println("  - En grafos dispersos: mucho mejor que O(n²)");
+                        System.out.printf("Grado promedio: %.2f\n", (double) totalAristas / cantidadVertices);        }
         System.out.println();
     }
 }
