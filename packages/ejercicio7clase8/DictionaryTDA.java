@@ -1,5 +1,7 @@
 package ejercicio7clase8;
 
+import ejercicio6clase9.AVLTDA;
+
 // ============================================
 // INTERFAZ TDA DICCIONARIO MÚLTIPLE
 // ============================================
@@ -24,7 +26,7 @@ public interface DictionaryTDA<K extends Comparable<K>, V extends Comparable<V>>
      * @param key La clave de la que se desean obtener los valores.
      * @return Un ABBTDA que contiene todos los valores asociados a la clave, o null si la clave no existe.
      */
-    ABBTDA<V> get(K key);
+    AVLTDA<V> get(K key);
 
     /**
      * Elimina la clave especificada y todos sus valores asociados del diccionario.

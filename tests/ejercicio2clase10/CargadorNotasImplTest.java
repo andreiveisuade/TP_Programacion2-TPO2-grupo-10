@@ -12,13 +12,7 @@ import java.util.NoSuchElementException;
 
 class CargadorNotasImplTest {
 
-    private CargadorNotasImpl cargadorNotas;
     private final InputStream originalSystemIn = System.in;
-
-    @BeforeEach
-    void setUp() {
-        cargadorNotas = new CargadorNotasImpl();
-    }
 
     @AfterEach
     void restoreSystemIn() {
@@ -32,18 +26,23 @@ class CargadorNotasImplTest {
 
     @Test
     void testCargarNotasConEntradaValida() {
-        provideInput("7\n8\n9\n-1\n");
+        provideInput("7\nMateria1\n8\nMateria2\n9\nMateria3\n-1\n");
+        CargadorNotasImpl cargadorNotas = new CargadorNotasImpl();
         List<Nota> notas = cargadorNotas.cargarNotas();
         assertNotNull(notas);
         assertEquals(3, notas.size());
         assertEquals(7, notas.get(0).getValor());
+        assertEquals("Materia1", notas.get(0).getMateria());
         assertEquals(8, notas.get(1).getValor());
+        assertEquals("Materia2", notas.get(1).getMateria());
         assertEquals(9, notas.get(2).getValor());
+        assertEquals("Materia3", notas.get(2).getMateria());
     }
 
     @Test
     void testCargarNotasConEntradaVacia() {
         provideInput("-1\n");
+        CargadorNotasImpl cargadorNotas = new CargadorNotasImpl();
         List<Nota> notas = cargadorNotas.cargarNotas();
         assertNotNull(notas);
         assertTrue(notas.isEmpty());
@@ -51,31 +50,30 @@ class CargadorNotasImplTest {
 
     @Test
     void testCargarNotasConEntradaInvalidaNoNumerica() {
-        provideInput("abc\n7\n-1\n");
-        // Expecting an exception or a graceful handling that skips invalid input
-        // Current implementation will throw InputMismatchException if not handled internally
-        // For this test, we expect it to skip 'abc' and continue with '7'
+        provideInput("abc\n7\nMateria1\n-1\n");
+        CargadorNotasImpl cargadorNotas = new CargadorNotasImpl();
         List<Nota> notas = cargadorNotas.cargarNotas();
         assertNotNull(notas);
         assertEquals(1, notas.size());
         assertEquals(7, notas.get(0).getValor());
+        assertEquals("Materia1", notas.get(0).getMateria());
     }
 
     @Test
     void testCargarNotasConEntradaFueraDeRango() {
-        provideInput("11\n-5\n5\n-1\n");
-        // Expecting invalid grades to be skipped or handled
-        // Current implementation of NotaImpl throws IllegalArgumentException
-        // CargadorNotasImpl should catch this and prompt again or skip
+        provideInput("11\n-5\n5\nMateria1\n-1\n");
+        CargadorNotasImpl cargadorNotas = new CargadorNotasImpl();
         List<Nota> notas = cargadorNotas.cargarNotas();
         assertNotNull(notas);
         assertEquals(1, notas.size());
         assertEquals(5, notas.get(0).getValor());
+        assertEquals("Materia1", notas.get(0).getMateria());
     }
 
     @Test
     void testCargarNotasConSoloValorDeSalida() {
         provideInput("-1\n");
+        CargadorNotasImpl cargadorNotas = new CargadorNotasImpl();
         List<Nota> notas = cargadorNotas.cargarNotas();
         assertNotNull(notas);
         assertTrue(notas.isEmpty());
@@ -83,57 +81,82 @@ class CargadorNotasImplTest {
 
     @Test
     void testCargarNotasConMultiplesValoresDeSalida() {
-        provideInput("7\n-1\n-1\n"); // Only the first -1 should act as exit
+        provideInput("7\nMateria1\n-1\n-1\n"); // Only the first -1 should act as exit
+        CargadorNotasImpl cargadorNotas = new CargadorNotasImpl();
         List<Nota> notas = cargadorNotas.cargarNotas();
         assertNotNull(notas);
         assertEquals(1, notas.size());
         assertEquals(7, notas.get(0).getValor());
+        assertEquals("Materia1", notas.get(0).getMateria());
     }
 
     @Test
     void testCargarNotasConCeroYDiez() {
-        provideInput("0\n10\n-1\n");
+        provideInput("0\nMateria1\n10\nMateria2\n-1\n");
+        CargadorNotasImpl cargadorNotas = new CargadorNotasImpl();
         List<Nota> notas = cargadorNotas.cargarNotas();
         assertNotNull(notas);
         assertEquals(2, notas.size());
         assertEquals(0, notas.get(0).getValor());
+        assertEquals("Materia1", notas.get(0).getMateria());
         assertEquals(10, notas.get(1).getValor());
+        assertEquals("Materia2", notas.get(1).getMateria());
     }
 
     @Test
     void testCargarNotasConEspaciosEnBlanco() {
-        provideInput(" 7 \n 8 \n-1\n");
+        provideInput(" 7 \nMateria1\n 8 \nMateria2\n-1\n");
+        CargadorNotasImpl cargadorNotas = new CargadorNotasImpl();
         List<Nota> notas = cargadorNotas.cargarNotas();
         assertNotNull(notas);
         assertEquals(2, notas.size());
         assertEquals(7, notas.get(0).getValor());
+        assertEquals("Materia1", notas.get(0).getMateria());
         assertEquals(8, notas.get(1).getValor());
+        assertEquals("Materia2", notas.get(1).getMateria());
     }
 
     @Test
     void testCargarNotasConEntradaNoNumericaYLuegoValida() {
-        provideInput("dos\n5\n-1\n");
+        provideInput("dos\n5\nMateria1\n-1\n");
+        CargadorNotasImpl cargadorNotas = new CargadorNotasImpl();
         List<Nota> notas = cargadorNotas.cargarNotas();
         assertNotNull(notas);
         assertEquals(1, notas.size());
         assertEquals(5, notas.get(0).getValor());
+        assertEquals("Materia1", notas.get(0).getMateria());
     }
 
     @Test
     void testCargarNotasConEntradaNumericaPeroNoEntera() {
-        provideInput("7.5\n8\n-1\n");
+        provideInput("7.5\n8\nMateria1\n-1\n");
+        CargadorNotasImpl cargadorNotas = new CargadorNotasImpl();
         List<Nota> notas = cargadorNotas.cargarNotas();
         assertNotNull(notas);
         assertEquals(1, notas.size());
         assertEquals(8, notas.get(0).getValor());
+        assertEquals("Materia1", notas.get(0).getMateria());
     }
 
     @Test
     void testCargarNotasConEntradaMuyLarga() {
-        provideInput("12345678901234567890\n5\n-1\n");
+        provideInput("12345678901234567890\n5\nMateria1\n-1\n");
+        CargadorNotasImpl cargadorNotas = new CargadorNotasImpl();
         List<Nota> notas = cargadorNotas.cargarNotas();
         assertNotNull(notas);
         assertEquals(1, notas.size());
         assertEquals(5, notas.get(0).getValor());
+        assertEquals("Materia1", notas.get(0).getMateria());
+    }
+
+    @Test
+    void testCargarNotasConMateriaEnBlanco() {
+        provideInput("7\n   \n8\nMateria2\n-1\n");
+        CargadorNotasImpl cargadorNotas = new CargadorNotasImpl();
+        List<Nota> notas = cargadorNotas.cargarNotas();
+        assertNotNull(notas);
+        assertEquals(1, notas.size());
+        assertEquals(8, notas.get(0).getValor());
+        assertEquals("Materia2", notas.get(0).getMateria());
     }
 }

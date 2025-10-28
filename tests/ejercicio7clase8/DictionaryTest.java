@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.*;
 
 import ejercicio7clase8.Dictionary;
-import ejercicio7clase8.ABBTDA;
+import ejercicio6clase9.AVLTDA;
 
 class DictionaryTest {
 
@@ -25,12 +25,12 @@ class DictionaryTest {
 
         // Act
         dictionary.put(key, value);
-        ABBTDA<Integer> abb = dictionary.get(key);
+        AVLTDA<Integer> avl = dictionary.get(key);
 
         // Assert
-        assertNotNull(abb, "El ABB no debería ser nulo después de insertar un elemento.");
-        assertTrue(abb.contains(value), "El ABB debería contener el valor insertado.");
-        assertEquals("10", abb.inOrder(), "El recorrido in-order debería mostrar el valor insertado.");
+        assertNotNull(avl, "El AVL no debería ser nulo después de insertar un elemento.");
+        assertTrue(avl.contains(value), "El AVL debería contener el valor insertado.");
+        assertEquals("10", avl.inOrder(), "El recorrido in-order debería mostrar el valor insertado.");
     }
 
     @Test
@@ -42,23 +42,23 @@ class DictionaryTest {
         dictionary.put(key, 20);
         dictionary.put(key, 10);
         dictionary.put(key, 30);
-        ABBTDA<Integer> abb = dictionary.get(key);
+        AVLTDA<Integer> avl = dictionary.get(key);
 
         // Assert
-        assertNotNull(abb);
-        assertTrue(abb.contains(10));
-        assertTrue(abb.contains(20));
-        assertTrue(abb.contains(30));
-        assertEquals("10 20 30", abb.inOrder(), "El recorrido in-order debería mostrar los valores ordenados.");
+        assertNotNull(avl);
+        assertTrue(avl.contains(10));
+        assertTrue(avl.contains(20));
+        assertTrue(avl.contains(30));
+        assertEquals("10 20 30", avl.inOrder(), "El recorrido in-order debería mostrar los valores ordenados.");
     }
 
     @Test
     void testGetNonExistentKey() {
         // Act
-        ABBTDA<Integer> abb = dictionary.get("no_existe");
+        AVLTDA<Integer> avl = dictionary.get("no_existe");
 
         // Assert
-        assertNull(abb, "El ABB debería ser nulo para una clave que no existe.");
+        assertNull(avl, "El AVL debería ser nulo para una clave que no existe.");
     }
 
     @Test
@@ -69,12 +69,12 @@ class DictionaryTest {
 
         // Act
         dictionary.remove("letras", 100);
-        ABBTDA<Integer> abb = dictionary.get("letras");
+        AVLTDA<Integer> avl = dictionary.get("letras");
 
         // Assert
-        assertNotNull(abb);
-        assertFalse(abb.contains(100), "El valor 100 debería haber sido eliminado.");
-        assertTrue(abb.contains(200));
+        assertNotNull(avl);
+        assertFalse(avl.contains(100), "El valor 100 debería haber sido eliminado.");
+        assertTrue(avl.contains(200));
     }
 
     @Test
@@ -98,13 +98,13 @@ class DictionaryTest {
 
         // Act
         dictionary.remove("colores", 3); // Intentar eliminar un valor que no existe
-        ABBTDA<Integer> abb = dictionary.get("colores");
+        AVLTDA<Integer> avl = dictionary.get("colores");
 
         // Assert
-        assertNotNull(abb);
-        assertTrue(abb.contains(1));
-        assertTrue(abb.contains(2));
-        assertEquals("1 2", abb.inOrder(), "El ABB no debería cambiar si se intenta eliminar un valor inexistente.");
+        assertNotNull(avl);
+        assertTrue(avl.contains(1));
+        assertTrue(avl.contains(2));
+        assertEquals("1 2", avl.inOrder(), "El AVL no debería cambiar si se intenta eliminar un valor inexistente.");
     }
 
     @Test
@@ -128,12 +128,12 @@ class DictionaryTest {
 
         // Act
         dictionary.put("temporal", 5);
-        ABBTDA<Integer> abb = dictionary.get("temporal");
+        AVLTDA<Integer> avl = dictionary.get("temporal");
 
         // Assert
-        assertNotNull(abb);
-        assertTrue(abb.contains(5));
-        assertEquals("5", abb.inOrder());
+        assertNotNull(avl);
+        assertTrue(avl.contains(5));
+        assertEquals("5", avl.inOrder());
     }
 
     @Test
@@ -143,12 +143,12 @@ class DictionaryTest {
 
         // Act
         dictionary.remove("single", 100);
-        ABBTDA<Integer> abb = dictionary.get("single");
+        AVLTDA<Integer> avl = dictionary.get("single");
 
         // Assert
-        assertNotNull(abb, "El ABB debería existir aunque esté vacío.");
-        assertFalse(abb.contains(100), "El valor 100 debería haber sido eliminado.");
-        assertEquals("", abb.inOrder(), "El ABB debería estar vacío.");
+        assertNotNull(avl, "El AVL debería existir aunque esté vacío.");
+        assertFalse(avl.contains(100), "El valor 100 debería haber sido eliminado.");
+        assertEquals("", avl.inOrder(), "El AVL debería estar vacío.");
     }
 
     @Test
@@ -192,7 +192,7 @@ class DictionaryTest {
         // Act & Assert
         assertThrows(NullPointerException.class, () -> {
             dictionary.remove("key", null);
-        }, "Eliminar un valor nulo del ABB de Integer debería lanzar NullPointerException.");
+        }, "Eliminar un valor nulo del AVL de Integer debería lanzar NullPointerException.");
     }
 
     @Test
@@ -204,7 +204,7 @@ class DictionaryTest {
     }
 
     @Test
-    void testPrintDictionaryWithEmptyABBs() {
+    void testPrintDictionaryWithEmptyAVLs() {
         // Arrange
         dictionary.put("key1", 1);
         dictionary.remove("key1", 1);
@@ -212,7 +212,48 @@ class DictionaryTest {
         dictionary.remove("key2", 2);
 
         // Act & Assert
-        assertDoesNotThrow(() -> dictionary.printDictionary(), "printDictionary con ABBs vacíos no debería lanzar excepción.");
+        assertDoesNotThrow(() -> dictionary.printDictionary(), "printDictionary con AVLs vacíos no debería lanzar excepción.");
         // Similar to above, detailed output verification would need System.out capture.
+    }
+
+    @Test
+    void testPutConValoresOrdenadosParaMismaClave() {
+        // Arrange
+        String key = "test";
+        for (int i = 1; i <= 100; i++) {
+            dictionary.put(key, i);
+        }
+
+        // Act
+        AVLTDA<Integer> avl = dictionary.get(key);
+
+        // Assert
+        assertNotNull(avl);
+        StringBuilder expectedInOrder = new StringBuilder();
+        for (int i = 1; i <= 100; i++) {
+            expectedInOrder.append(i).append(" ");
+        }
+        assertEquals(expectedInOrder.toString().trim(), avl.inOrder());
+    }
+
+    @Test
+    void testRemoverTodosLosValoresDeUnaClave() {
+        // Arrange
+        String key = "colores";
+        dictionary.put(key, 1);
+        dictionary.put(key, 2);
+        dictionary.put(key, 3);
+
+        // Act
+        dictionary.remove(key, 1);
+        dictionary.remove(key, 2);
+        dictionary.remove(key, 3);
+
+        AVLTDA<Integer> avl = dictionary.get(key);
+
+        // Assert
+        assertNotNull(avl, "El AVL debería existir aunque esté vacío.");
+        assertTrue(avl.inOrder().isEmpty(), "El AVL debería estar vacío.");
+        assertTrue(dictionary.containsKey(key), "La clave debería seguir existiendo en el diccionario.");
     }
 }

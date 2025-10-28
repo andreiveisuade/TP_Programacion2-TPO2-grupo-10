@@ -1,46 +1,43 @@
 package ejercicio3clase10;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
-// ============================================
+// ============================================ 
 // IMPLEMENTACIÓN: GRAFO CON LISTAS DE ADYACENCIA
-// ============================================
+// ============================================ 
 public class GrafoListas<E> implements GrafoTDA<E> {
-    private NodoVertice<E> cabeza;
-    private int cantidadVertices;
+    private Map<E, NodoVertice<E>> verticesMap;
 
     @Override
     public void inicializar() {
-        this.cabeza = null;
-        this.cantidadVertices = 0;
+        this.verticesMap = new HashMap<>();
     }
 
-    // ============================================
+    // ============================================ 
     // OPERACIONES BÁSICAS DE VÉRTICES
-    // ============================================
+    // ============================================ 
 
     @Override
     public void agregarVertice(E vertice) {
-        // Complejidad: O(n) donde n = cantidad de vértices
-        // Necesitamos verificar que no exista
+        // Complejidad: O(1) en promedio
         
         if (vertice == null) {
             throw new IllegalArgumentException("El vértice no puede ser null");
         }
 
-        // Verificar si ya existe - O(n)
-        if (buscarVertice(vertice) != null) {
+        // Verificar si ya existe - O(1)
+        if (verticesMap.containsKey(vertice)) {
             return; // Ya existe, no hacer nada
         }
 
-        // Agregar al inicio - O(1)
+        // Agregar al mapa - O(1)
         NodoVertice<E> nuevoNodo = new NodoVertice<>(vertice);
-        nuevoNodo.setSiguiente(cabeza);
-        cabeza = nuevoNodo;
-        cantidadVertices++;
+        verticesMap.put(vertice, nuevoNodo);
     }
 
     @Override
@@ -49,31 +46,24 @@ public class GrafoListas<E> implements GrafoTDA<E> {
         // n = cantidad de vértices
         // m = cantidad total de aristas en el grafo
         
-        if (cabeza == null) {
-            return;
+        if (vertice == null) {
+            throw new IllegalArgumentException("El vértice no puede ser null");
         }
 
-        // Caso especial: eliminar la cabeza
-        if (cabeza.getValor().equals(vertice)) {
-            cabeza = cabeza.getSiguiente();
-            cantidadVertices--;
-            // Eliminar aristas que apuntan a este vértice - O(n×k)
-            eliminarAristasHacia(vertice);
-            return;
+        if (verticesMap.isEmpty()) {
+            throw new IllegalArgumentException("El grafo está vacío, no se puede eliminar el vértice.");
         }
 
-        // Buscar el nodo anterior al que queremos eliminar - O(n)
-        NodoVertice<E> actual = cabeza;
-        while (actual.getSiguiente() != null) {
-            if (actual.getSiguiente().getValor().equals(vertice)) {
-                actual.setSiguiente(actual.getSiguiente().getSiguiente());
-                cantidadVertices--;
-                // Eliminar aristas que apuntan a este vértice
-                eliminarAristasHacia(vertice);
-                return;
-            }
-            actual = actual.getSiguiente();
+        // Verificar si el vértice existe antes de intentar eliminarlo - O(1)
+        if (!verticesMap.containsKey(vertice)) {
+            throw new IllegalArgumentException("El vértice a eliminar no existe en el grafo.");
         }
+
+        // Eliminar aristas que apuntan a este vértice - O(n×k)
+        eliminarAristasHacia(vertice);
+
+        // Eliminar el vértice del mapa - O(1)
+        verticesMap.remove(vertice);
     }
 
     /**
@@ -81,8 +71,7 @@ public class GrafoListas<E> implements GrafoTDA<E> {
      * Complejidad: O(n×k) donde n = vértices, k = promedio de aristas por vértice
      */
     private void eliminarAristasHacia(E vertice) {
-        NodoVertice<E> v = cabeza;
-        while (v != null) {
+        for (NodoVertice<E> v : verticesMap.values()) {
             // Para cada vértice, eliminar aristas hacia el vértice dado
             NodoArista<E> aristaActual = v.getAdyacentes();
             NodoArista<E> aristaAnterior = null;
@@ -100,26 +89,33 @@ public class GrafoListas<E> implements GrafoTDA<E> {
                     aristaActual = aristaActual.getSiguiente();
                 }
             }
-            v = v.getSiguiente();
         }
     }
 
-    // ============================================
+    /**
+     * Elimina todas las aristas entrantes a un vértice específico.
+     * Útil para "aislar" un vértice sin eliminarlo.
+     * Complejidad: O(n×k) donde n = vértices, k = promedio de aristas por vértice
+     */
+    public void eliminarAristasEntrantes(E vertice) {
+        eliminarAristasHacia(vertice);
+    }
+
+    // ============================================ 
     // OPERACIONES BÁSICAS DE ARISTAS
-    // ============================================
+    // ============================================ 
 
     @Override
     public void agregarArista(E origen, E destino, int peso) {
-        // Complejidad: O(n + k) donde:
-        // n = cantidad de vértices (buscar nodo origen)
+        // Complejidad: O(k) donde:
         // k = cantidad de aristas del vértice origen (verificar duplicado)
         
         if (peso <= 0) {
             throw new IllegalArgumentException("El peso debe ser positivo");
         }
 
-        NodoVertice<E> nodoOrigen = buscarVertice(origen); // O(n)
-        NodoVertice<E> nodoDestino = buscarVertice(destino); // O(n)
+        NodoVertice<E> nodoOrigen = buscarVertice(origen); // O(1)
+        NodoVertice<E> nodoDestino = buscarVertice(destino); // O(1)
 
         if (nodoOrigen == null || nodoDestino == null) {
             throw new IllegalArgumentException("Ambos vértices deben existir");
@@ -144,11 +140,10 @@ public class GrafoListas<E> implements GrafoTDA<E> {
 
     @Override
     public void eliminarArista(E origen, E destino) {
-        // Complejidad: O(n + k) donde:
-        // n = buscar vértice origen
+        // Complejidad: O(k) donde:
         // k = recorrer aristas del origen
         
-        NodoVertice<E> nodoOrigen = buscarVertice(origen); // O(n)
+        NodoVertice<E> nodoOrigen = buscarVertice(origen); // O(1)
         
         if (nodoOrigen == null) {
             return;
@@ -174,9 +169,9 @@ public class GrafoListas<E> implements GrafoTDA<E> {
 
     @Override
     public boolean existeArista(E origen, E destino) {
-        // Complejidad: O(n + k)
+        // Complejidad: O(k)
         
-        NodoVertice<E> nodoOrigen = buscarVertice(origen); // O(n)
+        NodoVertice<E> nodoOrigen = buscarVertice(origen); // O(1)
         
         if (nodoOrigen == null) {
             return false;
@@ -196,9 +191,9 @@ public class GrafoListas<E> implements GrafoTDA<E> {
 
     @Override
     public int pesoArista(E origen, E destino) {
-        // Complejidad: O(n + k)
+        // Complejidad: O(k)
         
-        NodoVertice<E> nodoOrigen = buscarVertice(origen); // O(n)
+        NodoVertice<E> nodoOrigen = buscarVertice(origen); // O(1)
         
         if (nodoOrigen == null) {
             throw new IllegalArgumentException("El vértice origen no existe");
@@ -220,20 +215,12 @@ public class GrafoListas<E> implements GrafoTDA<E> {
     public List<E> vertices() {
         // Complejidad: O(n)
         
-        List<E> listaVertices = new ArrayList<>();
-        NodoVertice<E> actual = cabeza;
-        
-        while (actual != null) {
-            listaVertices.add(actual.getValor());
-            actual = actual.getSiguiente();
-        }
-        
-        return listaVertices;
+        return new ArrayList<>(verticesMap.keySet());
     }
 
-    // ============================================
+    // ============================================ 
     // MÉTODOS ADICIONALES DEL EJERCICIO 3
-    // ============================================
+    // ============================================ 
 
     /**
      * Ejercicio 3.1: Obtener el conjunto de vértices aislados en G.
@@ -258,35 +245,28 @@ public class GrafoListas<E> implements GrafoTDA<E> {
         Set<E> tienenSalientes = new HashSet<>();
         Set<E> tienenEntrantes = new HashSet<>();
 
-        NodoVertice<E> v = cabeza;
-
         // Primera pasada: identificar vértices con aristas SALIENTES - O(n)
-        while (v != null) {
+        for (NodoVertice<E> v : verticesMap.values()) {
             if (v.getAdyacentes() != null) {
                 tienenSalientes.add(v.getValor());
             }
-            v = v.getSiguiente();
         }
 
         // Segunda pasada: identificar vértices con aristas ENTRANTES - O(n×k)
-        v = cabeza;
-        while (v != null) {
+        for (NodoVertice<E> v : verticesMap.values()) {
             NodoArista<E> arista = v.getAdyacentes();
             while (arista != null) {
                 tienenEntrantes.add(arista.getDestino());
                 arista = arista.getSiguiente();
             }
-            v = v.getSiguiente();
         }
 
         // Tercera pasada: recolectar vértices que NO tienen ni salientes ni entrantes - O(n)
-        v = cabeza;
-        while (v != null) {
+        for (NodoVertice<E> v : verticesMap.values()) {
             E valor = v.getValor();
             if (!tienenSalientes.contains(valor) && !tienenEntrantes.contains(valor)) {
                 aislados.add(valor);
             }
-            v = v.getSiguiente();
         }
 
         return aislados;
@@ -303,30 +283,25 @@ public class GrafoListas<E> implements GrafoTDA<E> {
      * k₁ = cantidad de aristas salientes de origen
      * k₂ = cantidad de aristas salientes de cada candidato
      * 
-     * En el peor caso: O(n²) si el grafo es completo
-     * En la práctica: O(k×k) que suele ser mucho menor
-     * 
      * Desglose:
-     * 1. Buscar vértice origen - O(n)
+     * 1. Buscar vértice origen - O(1)
      * 2. Para cada vecino p de origen - O(k₁)
-     *    - Buscar vértice p - O(n)
+     *    - Buscar vértice p - O(1)
      *    - Verificar si p→destino existe - O(k₂)
-     * Total: O(n) + O(k₁ × (n + k₂))
-     * 
-     * OPTIMIZACIÓN: Usando HashMap para vértices sería O(k₁×k₂)
+     * Total: O(1) + O(k₁ × (1 + k₂)) = O(k₁×k₂)
      */
     @Override
     public Set<E> verticesPuente(E origen, E destino) {
         Set<E> puentes = new HashSet<>();
 
-        NodoVertice<E> nodoOrigen = buscarVertice(origen); // O(n)
+        NodoVertice<E> nodoOrigen = buscarVertice(origen); // O(1)
         
         if (nodoOrigen == null) {
             throw new IllegalArgumentException("El vértice origen no existe");
         }
 
-        // Verificar que el destino exista
-        if (buscarVertice(destino) == null) { // O(n)
+        NodoVertice<E> nodoDestino = buscarVertice(destino); // O(1)
+        if (nodoDestino == null) {
             throw new IllegalArgumentException("El vértice destino no existe");
         }
 
@@ -336,9 +311,19 @@ public class GrafoListas<E> implements GrafoTDA<E> {
         while (aristaDesdeOrigen != null) {
             E candidatoPuente = aristaDesdeOrigen.getDestino();
             
-            // Verificar si existe arista desde el candidato al destino - O(n + k₂)
-            if (existeArista(candidatoPuente, destino)) {
-                puentes.add(candidatoPuente);
+            // Buscar el nodo candidato UNA SOLA VEZ - O(1)
+            NodoVertice<E> nodoCandidato = buscarVertice(candidatoPuente);
+            
+            if (nodoCandidato != null) {
+                // Verificar si candidato → destino en O(k₂)
+                NodoArista<E> aristaCandidato = nodoCandidato.getAdyacentes();
+                while (aristaCandidato != null) {
+                    if (aristaCandidato.getDestino().equals(destino)) {
+                        puentes.add(candidatoPuente);
+                        break; // Salir del while interno
+                    }
+                    aristaCandidato = aristaCandidato.getSiguiente();
+                }
             }
             
             aristaDesdeOrigen = aristaDesdeOrigen.getSiguiente();
@@ -347,23 +332,16 @@ public class GrafoListas<E> implements GrafoTDA<E> {
         return puentes;
     }
 
-    // ============================================
+    // ============================================ 
     // MÉTODOS AUXILIARES
-    // ============================================
+    // ============================================ 
 
     /**
      * Busca un nodo vértice por su valor.
-     * Complejidad: O(n) donde n = cantidad de vértices
+     * Complejidad: O(1) en promedio
      */
     private NodoVertice<E> buscarVertice(E vertice) {
-        NodoVertice<E> actual = cabeza;
-        while (actual != null) {
-            if (actual.getValor().equals(vertice)) {
-                return actual;
-            }
-            actual = actual.getSiguiente();
-        }
-        return null;
+        return verticesMap.get(vertice);
     }
 
     /**
@@ -380,22 +358,21 @@ public class GrafoListas<E> implements GrafoTDA<E> {
         return grado;
     }
 
-    // ============================================
+    // ============================================ 
     // MÉTODOS DE VISUALIZACIÓN
-    // ============================================
+    // ============================================ 
 
     public void imprimirGrafo() {
         System.out.println("\n------------------------------------------------");
         System.out.println("|      GRAFO - LISTAS DE ADYACENCIA         |");
         System.out.println("------------------------------------------------\n");
 
-        if (cabeza == null) {
+        if (verticesMap.isEmpty()) {
             System.out.println("El grafo está vacío.\n");
             return;
         }
 
-        NodoVertice<E> v = cabeza;
-        while (v != null) {
+        for (NodoVertice<E> v : verticesMap.values()) {
             System.out.printf("%s → ", v.getValor());
             
             NodoArista<E> arista = v.getAdyacentes();
@@ -409,8 +386,6 @@ public class GrafoListas<E> implements GrafoTDA<E> {
                 }
                 System.out.println(String.join(", ", aristas));
             }
-            
-            v = v.getSiguiente();
         }
         System.out.println();
     }
@@ -419,28 +394,27 @@ public class GrafoListas<E> implements GrafoTDA<E> {
         System.out.println("------------------------------------------------");
         System.out.println("|       ESTADÍSTICAS DEL GRAFO              |");
         System.out.println("------------------------------------------------");
-        System.out.println("Cantidad de vértices: " + cantidadVertices);
+        System.out.println("Cantidad de vértices: " + verticesMap.size());
         
         int totalAristas = 0;
         int gradoMax = 0;
-        int gradoMin = Integer.MAX_VALUE;
+        int gradoMin = (verticesMap.isEmpty()) ? 0 : Integer.MAX_VALUE;
         
-        NodoVertice<E> v = cabeza;
-        while (v != null) {
+        for (NodoVertice<E> v : verticesMap.values()) {
             int grado = gradoSalida(v);
             totalAristas += grado;
             gradoMax = Math.max(gradoMax, grado);
-            if (cantidadVertices > 0) {
+            if (!verticesMap.isEmpty()) {
                 gradoMin = Math.min(gradoMin, grado);
             }
-            v = v.getSiguiente();
         }
         
         System.out.println("Cantidad de aristas: " + totalAristas);
-        if (cantidadVertices > 0) {
+        if (!verticesMap.isEmpty()) {
             System.out.println("Grado máximo de salida: " + gradoMax);
             System.out.println("Grado mínimo de salida: " + gradoMin);
-                        System.out.printf("Grado promedio: %.2f\n", (double) totalAristas / cantidadVertices);        }
+            System.out.printf("Grado promedio: %.2f\n", (double) totalAristas / verticesMap.size());
+        }
         System.out.println();
     }
 }

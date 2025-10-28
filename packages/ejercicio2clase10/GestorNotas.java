@@ -1,12 +1,16 @@
 package ejercicio2clase10;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class GestorNotas {
     private List<Nota> notas;
 
     public GestorNotas(List<Nota> notas) {
-        this.notas = notas;
+        if (notas == null) {
+            throw new IllegalArgumentException("La lista de notas no puede ser nula.");
+        }
+        this.notas = new ArrayList<>(notas); // Copia defensiva
     }
 
     public double calcularPromedio() {

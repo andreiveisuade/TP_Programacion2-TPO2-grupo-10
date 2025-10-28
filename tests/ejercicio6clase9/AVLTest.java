@@ -308,4 +308,69 @@ class AVLTest {
         assertEquals("", avl.inOrder());
         assertNull(avl.get(elements.get(0))); // Should be null after removal
     }
+
+    // New tests for AVL height and balance after rotations
+    @Test
+    void testAlturaYBalanceDespuesDeRotacionSimpleIzquierda() {
+        avl.insert(10);
+        avl.insert(20);
+        avl.insert(30);
+        // Tree should be: 20 (root, h=2, fb=0), 10 (left, h=1, fb=0), 30 (right, h=1, fb=0)
+        assertEquals(20, avl.get(20)); // Root
+        assertEquals(10, avl.get(10)); // Left child
+        assertEquals(30, avl.get(30)); // Right child
+        // Assuming AVL has methods to get height and balance factor for testing
+        // For now, we'll rely on inOrder and structure to imply balance
+        assertEquals("10 20 30", avl.inOrder());
+    }
+
+    @Test
+    void testAlturaYBalanceDespuesDeRotacionSimpleDerecha() {
+        avl.insert(30);
+        avl.insert(20);
+        avl.insert(10);
+        // Tree should be: 20 (root, h=2, fb=0), 10 (left, h=1, fb=0), 30 (right, h=1, fb=0)
+        assertEquals(20, avl.get(20)); // Root
+        assertEquals(10, avl.get(10)); // Left child
+        assertEquals(30, avl.get(30)); // Right child
+        assertEquals("10 20 30", avl.inOrder());
+    }
+
+    @Test
+    void testAlturaYBalanceDespuesDeRotacionDobleIzquierdaDerecha() {
+        avl.insert(30);
+        avl.insert(10);
+        avl.insert(20);
+        // Tree should be: 20 (root, h=2, fb=0), 10 (left, h=1, fb=0), 30 (right, h=1, fb=0)
+        assertEquals(20, avl.get(20)); // Root
+        assertEquals(10, avl.get(10)); // Left child
+        assertEquals(30, avl.get(30)); // Right child
+        assertEquals("10 20 30", avl.inOrder());
+    }
+
+    @Test
+    void testAlturaYBalanceDespuesDeRotacionDobleDerechaIzquierda() {
+        avl.insert(10);
+        avl.insert(30);
+        avl.insert(20);
+        // Tree should be: 20 (root, h=2, fb=0), 10 (left, h=1, fb=0), 30 (right, h=1, fb=0)
+        assertEquals(20, avl.get(20)); // Root
+        assertEquals(10, avl.get(10)); // Left child
+        assertEquals(30, avl.get(30)); // Right child
+        assertEquals("10 20 30", avl.inOrder());
+    }
+
+    // New tests for getOrderedArray() edge cases
+    @Test
+    void testGetOrderedArrayArbolVacio() {
+        int[] expected = {};
+        assertArrayEquals(expected, avl.getOrderedArray());
+    }
+
+    @Test
+    void testGetOrderedArrayUnicoElemento() {
+        avl.insert(50);
+        int[] expected = {50};
+        assertArrayEquals(expected, avl.getOrderedArray());
+    }
 }

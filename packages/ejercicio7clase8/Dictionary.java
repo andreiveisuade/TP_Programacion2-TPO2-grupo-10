@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class Dictionary<K extends Comparable<K>, V extends Comparable<V>> 
         implements DictionaryTDA<K, V> { 
     
-    private AVLTDA<Entry<K, ABBTDA<V>>> entries;
+    private AVLTDA<Entry<K, AVLTDA<V>>> entries;
 
     @Override
     public void initialize() {
@@ -31,24 +31,24 @@ public class Dictionary<K extends Comparable<K>, V extends Comparable<V>>
         if (key == null) {
             throw new NullPointerException("No se permite clave nula en el diccionario.");
         }
-        Entry<K, ABBTDA<V>> entry = entries.get(new Entry<>(key, null));
+        Entry<K, AVLTDA<V>> entry = entries.get(new Entry<>(key, null));
         
         if (entry != null) {
             entry.getValue().insert(value);
         } else {
-            ABBTDA<V> newABB = new ABB<>();
-            newABB.initialize();
-            newABB.insert(value);
-            entries.insert(new Entry<>(key, newABB));
+            AVLTDA<V> newAVL = new AVL<>();
+            newAVL.initialize();
+            newAVL.insert(value);
+            entries.insert(new Entry<>(key, newAVL));
         }
     }
 
     @Override
-    public ABBTDA<V> get(K key) {
+    public AVLTDA<V> get(K key) {
         if (key == null) {
             throw new NullPointerException("No se permite clave nula para obtener valores del diccionario.");
         }
-        Entry<K, ABBTDA<V>> entry = entries.get(new Entry<>(key, null));
+        Entry<K, AVLTDA<V>> entry = entries.get(new Entry<>(key, null));
         return (entry != null) ? entry.getValue() : null;
     }
 
@@ -65,9 +65,9 @@ public class Dictionary<K extends Comparable<K>, V extends Comparable<V>>
         if (key == null) {
             throw new NullPointerException("No se permite clave nula para eliminar del diccionario.");
         }
-        ABBTDA<V> abb = get(key);
-        if (abb != null) {
-            abb.remove(value);
+        AVLTDA<V> avl = get(key);
+        if (avl != null) {
+            avl.remove(value);
         }
     }
 
@@ -77,15 +77,15 @@ public class Dictionary<K extends Comparable<K>, V extends Comparable<V>>
     }
 
     public void printDictionary() {
-        ArrayList<Entry<K, ABBTDA<V>>> entryList = entries.inOrderTraversal();
+        ArrayList<Entry<K, AVLTDA<V>>> entryList = entries.inOrderTraversal();
         
         System.out.println("===== DICCIONARIO MÚLTIPLE (Eficiente) =====\n");
-        for (Entry<K, ABBTDA<V>> entry : entryList) {
+        for (Entry<K, AVLTDA<V>> entry : entryList) {
             K key = entry.getKey();
-            ABBTDA<V> abb = entry.getValue();
+            AVLTDA<V> avl = entry.getValue();
             
             System.out.println("Clave: " + key);
-            System.out.println("  Valores (in-order): " + abb.inOrder());
+            System.out.println("  Valores (in-order): " + avl.inOrder());
         }
         System.out.println("\n============================================");
     }
