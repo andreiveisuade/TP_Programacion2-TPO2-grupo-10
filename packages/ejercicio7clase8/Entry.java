@@ -5,7 +5,8 @@ package ejercicio7clase8;
 // ============================================
 /**
  * Representa un par clave-valor genérico. Utilizado para almacenar las asociaciones en el diccionario.
- * @param <K> Tipo de la clave.
+ * Implementa {@link Comparable} para permitir la comparación de entradas basada en sus claves.
+ * @param <K> Tipo de la clave, debe ser comparable.
  * @param <V> Tipo del valor.
  */
 public class Entry<K extends Comparable<K>, V> implements Comparable<Entry<K, V>> {
@@ -40,6 +41,11 @@ public class Entry<K extends Comparable<K>, V> implements Comparable<Entry<K, V>
      */
     public void setValue(V value) { this.value = value; }
 
+    /**
+     * Compara esta entrada con otra basándose en sus claves.
+     * @param other La otra entrada con la que comparar.
+     * @return Un valor negativo si esta clave es menor, cero si son iguales, o un valor positivo si esta clave es mayor.
+     */
     @Override
     public int compareTo(Entry<K, V> other) {
         return this.key.compareTo(other.key);

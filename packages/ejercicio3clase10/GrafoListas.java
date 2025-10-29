@@ -7,21 +7,26 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-// ============================================ 
-// IMPLEMENTACIÓN: GRAFO CON LISTAS DE ADYACENCIA
-// ============================================ 
+/**
+ * Implementación de la interfaz {@link GrafoTDA} utilizando listas de adyacencia.
+ * Los vértices se almacenan en un `HashMap` para un acceso eficiente (O(1) en promedio),
+ * y las aristas salientes de cada vértice se representan mediante una lista enlazada de {@link NodoArista}.
+ * @param <E> El tipo de dato que representará los vértices del grafo.
+ */
 public class GrafoListas<E> implements GrafoTDA<E> {
     private Map<E, NodoVertice<E>> verticesMap;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void inicializar() {
         this.verticesMap = new HashMap<>();
     }
 
-    // ============================================ 
-    // OPERACIONES BÁSICAS DE VÉRTICES
-    // ============================================ 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void agregarVertice(E vertice) {
         // Complejidad: O(1) en promedio
@@ -40,6 +45,9 @@ public class GrafoListas<E> implements GrafoTDA<E> {
         verticesMap.put(vertice, nuevoNodo);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void eliminarVertice(E vertice) {
         // Complejidad: O(n + m) donde:
@@ -68,7 +76,10 @@ public class GrafoListas<E> implements GrafoTDA<E> {
 
     /**
      * Elimina todas las aristas que tienen como destino el vértice dado.
+     * Este método recorre todos los vértices del grafo y sus listas de adyacencia
+     * para encontrar y eliminar cualquier arista que apunte al vértice especificado.
      * Complejidad: O(n×k) donde n = vértices, k = promedio de aristas por vértice
+     * @param vertice El vértice cuyo destino se desea eliminar de las aristas.
      */
     private void eliminarAristasHacia(E vertice) {
         for (NodoVertice<E> v : verticesMap.values()) {
@@ -94,17 +105,17 @@ public class GrafoListas<E> implements GrafoTDA<E> {
 
     /**
      * Elimina todas las aristas entrantes a un vértice específico.
-     * Útil para "aislar" un vértice sin eliminarlo.
+     * Útil para "aislar" un vértice sin eliminarlo. Es un alias para {@code eliminarAristasHacia}.
      * Complejidad: O(n×k) donde n = vértices, k = promedio de aristas por vértice
+     * @param vertice El vértice al que se le eliminarán las aristas entrantes.
      */
     public void eliminarAristasEntrantes(E vertice) {
         eliminarAristasHacia(vertice);
     }
 
-    // ============================================ 
-    // OPERACIONES BÁSICAS DE ARISTAS
-    // ============================================ 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void agregarArista(E origen, E destino, int peso) {
         // Complejidad: O(k) donde:
@@ -138,6 +149,9 @@ public class GrafoListas<E> implements GrafoTDA<E> {
         nodoOrigen.setAdyacentes(nuevaArista);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void eliminarArista(E origen, E destino) {
         // Complejidad: O(k) donde:
@@ -167,6 +181,9 @@ public class GrafoListas<E> implements GrafoTDA<E> {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean existeArista(E origen, E destino) {
         // Complejidad: O(k)
@@ -189,6 +206,9 @@ public class GrafoListas<E> implements GrafoTDA<E> {
         return false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int pesoArista(E origen, E destino) {
         // Complejidad: O(k)
@@ -211,6 +231,9 @@ public class GrafoListas<E> implements GrafoTDA<E> {
         throw new IllegalArgumentException("La arista no existe");
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public List<E> vertices() {
         // Complejidad: O(n)
@@ -218,26 +241,8 @@ public class GrafoListas<E> implements GrafoTDA<E> {
         return new ArrayList<>(verticesMap.keySet());
     }
 
-    // ============================================ 
-    // MÉTODOS ADICIONALES DEL EJERCICIO 3
-    // ============================================ 
-
     /**
-     * Ejercicio 3.1: Obtener el conjunto de vértices aislados en G.
-     * 
-     * Un vértice v es AISLADO si:
-     * - No tiene aristas salientes (su lista de adyacencia está vacía)
-     * - No tiene aristas entrantes (ningún otro vértice apunta a él)
-     * 
-     * Complejidad: O(n×k) donde:
-     * n = cantidad de vértices
-     * k = promedio de aristas por vértice
-     * 
-     * Desglose:
-     * 1. Primera pasada: marcar vértices con aristas salientes - O(n)
-     * 2. Segunda pasada: marcar vértices con aristas entrantes - O(n×k)
-     * 3. Tercera pasada: recolectar aislados - O(n)
-     * Total: O(n) + O(n×k) + O(n) = O(n×k)
+     * {@inheritDoc}
      */
     @Override
     public Set<E> verticesAislados() {
@@ -273,22 +278,7 @@ public class GrafoListas<E> implements GrafoTDA<E> {
     }
 
     /**
-     * Ejercicio 3.2: Obtener vértices puente entre v1 y v2.
-     * 
-     * Un vértice p es PUENTE entre origen (o) y destino (d) si:
-     * - Existe una arista (o → p)
-     * - Existe una arista (p → d)
-     * 
-     * Complejidad: O(k₁×k₂) donde:
-     * k₁ = cantidad de aristas salientes de origen
-     * k₂ = cantidad de aristas salientes de cada candidato
-     * 
-     * Desglose:
-     * 1. Buscar vértice origen - O(1)
-     * 2. Para cada vecino p de origen - O(k₁)
-     *    - Buscar vértice p - O(1)
-     *    - Verificar si p→destino existe - O(k₂)
-     * Total: O(1) + O(k₁ × (1 + k₂)) = O(k₁×k₂)
+     * {@inheritDoc}
      */
     @Override
     public Set<E> verticesPuente(E origen, E destino) {
@@ -332,13 +322,11 @@ public class GrafoListas<E> implements GrafoTDA<E> {
         return puentes;
     }
 
-    // ============================================ 
-    // MÉTODOS AUXILIARES
-    // ============================================ 
-
     /**
      * Busca un nodo vértice por su valor.
      * Complejidad: O(1) en promedio
+     * @param vertice El valor del vértice a buscar.
+     * @return El {@link NodoVertice} encontrado, o null si no existe.
      */
     private NodoVertice<E> buscarVertice(E vertice) {
         return verticesMap.get(vertice);
@@ -347,6 +335,8 @@ public class GrafoListas<E> implements GrafoTDA<E> {
     /**
      * Cuenta el grado de salida de un vértice (cantidad de aristas salientes).
      * Complejidad: O(k) donde k = aristas del vértice
+     * @param nodo El {@link NodoVertice} del cual se desea contar el grado de salida.
+     * @return El número de aristas salientes del nodo.
      */
     private int gradoSalida(NodoVertice<E> nodo) {
         int grado = 0;
@@ -358,10 +348,9 @@ public class GrafoListas<E> implements GrafoTDA<E> {
         return grado;
     }
 
-    // ============================================ 
-    // MÉTODOS DE VISUALIZACIÓN
-    // ============================================ 
-
+    /**
+     * Imprime una representación del grafo en la consola, mostrando cada vértice y sus aristas salientes.
+     */
     public void imprimirGrafo() {
         System.out.println("\n------------------------------------------------");
         System.out.println("|      GRAFO - LISTAS DE ADYACENCIA         |");
@@ -390,6 +379,10 @@ public class GrafoListas<E> implements GrafoTDA<E> {
         System.out.println();
     }
 
+    /**
+     * Imprime estadísticas básicas del grafo, como la cantidad de vértices y aristas,
+     * el grado máximo y mínimo de salida, y el grado promedio.
+     */
     public void imprimirEstadisticas() {
         System.out.println("------------------------------------------------");
         System.out.println("|       ESTADÍSTICAS DEL GRAFO              |");

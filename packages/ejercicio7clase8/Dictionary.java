@@ -9,9 +9,10 @@ import java.util.ArrayList;
 // IMPLEMENTACIÓN DICCIONARIO MÚLTIPLE (EFICIENTE) 
 // ============================================ 
 /**
- * Implementación de un Diccionario Múltiple que asocia una clave con un conjunto de valores
- * almacenados en un Árbol Binario de Búsqueda (ABB). Utiliza un AVL para almacenar las claves,
- * logrando una alta eficiencia en las operaciones.
+ * Implementación de un Diccionario Múltiple eficiente que asocia una clave con un conjunto de valores.
+ * Utiliza un Árbol AVL ({@link AVLTDA}) para almacenar las claves, donde cada clave apunta a otro
+ * Árbol AVL que contiene los valores asociados a esa clave. Esto permite una alta eficiencia
+ * en las operaciones de búsqueda, inserción y eliminación.
  * @param <K> Tipo de la clave, debe ser comparable.
  * @param <V> Tipo de los valores, deben ser comparables.
  */
@@ -20,12 +21,18 @@ public class Dictionary<K extends Comparable<K>, V extends Comparable<V>>
     
     private AVLTDA<Entry<K, AVLTDA<V>>> entries;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void initialize() {
         entries = new AVL<>();
         entries.initialize();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void put(K key, V value) {
         if (key == null) {
@@ -43,6 +50,9 @@ public class Dictionary<K extends Comparable<K>, V extends Comparable<V>>
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public AVLTDA<V> get(K key) {
         if (key == null) {
@@ -52,6 +62,9 @@ public class Dictionary<K extends Comparable<K>, V extends Comparable<V>>
         return (entry != null) ? entry.getValue() : null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void remove(K key) {
         if (key == null) {
@@ -60,6 +73,9 @@ public class Dictionary<K extends Comparable<K>, V extends Comparable<V>>
         entries.remove(new Entry<>(key, null));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void remove(K key, V value) {
         if (key == null) {
@@ -71,11 +87,18 @@ public class Dictionary<K extends Comparable<K>, V extends Comparable<V>>
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean containsKey(K key) {
         return get(key) != null;
     }
 
+    /**
+     * Imprime el contenido del diccionario en la consola, mostrando cada clave y sus valores asociados
+     * en orden ascendente.
+     */
     public void printDictionary() {
         ArrayList<Entry<K, AVLTDA<V>>> entryList = entries.inOrderTraversal();
         

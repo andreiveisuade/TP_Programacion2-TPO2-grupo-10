@@ -11,11 +11,17 @@ package ejercicio7clase8;
 public class ABB<E extends Comparable<E>> implements ABBTDA<E> {
     private NodeABB<E> root;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void initialize() {
         root = null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void insert(E element) {
         if (element == null) {
@@ -28,6 +34,11 @@ public class ABB<E extends Comparable<E>> implements ABBTDA<E> {
         }
     }
 
+    /**
+     * Método auxiliar recursivo para insertar un elemento en el ABB.
+     * @param node El nodo actual en la recursión.
+     * @param element El elemento a insertar.
+     */
     private void insertRecursive(NodeABB<E> node, E element) {
         int comparison = element.compareTo(node.getValue());
         
@@ -46,6 +57,9 @@ public class ABB<E extends Comparable<E>> implements ABBTDA<E> {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean contains(E element) {
         if (element == null) {
@@ -54,6 +68,12 @@ public class ABB<E extends Comparable<E>> implements ABBTDA<E> {
         return containsRecursive(root, element);
     }
 
+    /**
+     * Método auxiliar recursivo para verificar si un elemento está presente en el ABB.
+     * @param node El nodo actual en la recursión.
+     * @param element El elemento a buscar.
+     * @return true si el elemento está en el ABB, false en caso contrario.
+     */
     private boolean containsRecursive(NodeABB<E> node, E element) {
         if (node == null) {
             return false;
@@ -70,6 +90,9 @@ public class ABB<E extends Comparable<E>> implements ABBTDA<E> {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void remove(E element) {
         if (element == null) {
@@ -78,6 +101,12 @@ public class ABB<E extends Comparable<E>> implements ABBTDA<E> {
         root = removeRecursive(root, element);
     }
 
+    /**
+     * Método auxiliar recursivo para eliminar un elemento del ABB.
+     * @param node El nodo actual en la recursión.
+     * @param element El elemento a eliminar.
+     * @return La raíz del subárbol modificado.
+     */
     private NodeABB<E> removeRecursive(NodeABB<E> node, E element) {
         if (node == null) {
             return null;
@@ -90,6 +119,8 @@ public class ABB<E extends Comparable<E>> implements ABBTDA<E> {
         } else if (comparison > 0) {
             node.setRight(removeRecursive(node.getRight(), element));
         } else {
+            // Nodo encontrado
+            // Caso 1: Nodo sin hijos o con un solo hijo
             if (node.getLeft() == null && node.getRight() == null) {
                 return null;
             }
@@ -100,6 +131,7 @@ public class ABB<E extends Comparable<E>> implements ABBTDA<E> {
                 return node.getLeft();
             }
             
+            // Caso 2: Nodo con dos hijos
             NodeABB<E> successor = findMin(node.getRight());
             node.setValue(successor.getValue());
             node.setRight(removeRecursive(node.getRight(), successor.getValue()));
@@ -108,6 +140,11 @@ public class ABB<E extends Comparable<E>> implements ABBTDA<E> {
         return node;
     }
 
+    /**
+     * Método auxiliar para encontrar el nodo con el valor mínimo en un subárbol dado.
+     * @param node La raíz del subárbol donde buscar el mínimo.
+     * @return El nodo con el valor mínimo.
+     */
     private NodeABB<E> findMin(NodeABB<E> node) {
         while (node.getLeft() != null) {
             node = node.getLeft();
@@ -115,6 +152,9 @@ public class ABB<E extends Comparable<E>> implements ABBTDA<E> {
         return node;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String inOrder() {
         StringBuilder sb = new StringBuilder();
@@ -122,6 +162,11 @@ public class ABB<E extends Comparable<E>> implements ABBTDA<E> {
         return sb.toString().trim();
     }
 
+    /**
+     * Método auxiliar recursivo para realizar un recorrido in-order del ABB.
+     * @param node El nodo actual en la recursión.
+     * @param sb El StringBuilder para acumular los elementos.
+     */
     private void inOrderRecursive(NodeABB<E> node, StringBuilder sb) {
         if (node != null) {
             inOrderRecursive(node.getLeft(), sb);

@@ -4,10 +4,17 @@ import java.util.Set;
 import java.util.ArrayList;
 import java.util.List;
 
-// ============================================ 
-// PROGRAMA PRINCIPAL DE PRUEBA 
-// ============================================ 
+/**
+ * Clase principal que demuestra el funcionamiento de la implementación de un grafo
+ * utilizando listas de adyacencia ({@link GrafoListas}).
+ * Realiza operaciones de agregación y eliminación de vértices y aristas,
+ * y ejecuta los métodos para encontrar vértices aislados y vértices puente.
+ */
 public class Main {
+    /**
+     * Método principal que inicia la demostración del grafo.
+     * @param args Argumentos de la línea de comandos (no utilizados en esta aplicación).
+     */
     public static void main(String[] args) {
         GrafoTDA<String> grafo = new GrafoListas<>();
         grafo.inicializar();

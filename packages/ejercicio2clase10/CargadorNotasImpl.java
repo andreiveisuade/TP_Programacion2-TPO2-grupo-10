@@ -5,13 +5,26 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
+/**
+ * Implementación de {@link CargadorNotas} que permite al usuario ingresar notas a través de la consola.
+ * Valida la entrada del usuario para asegurar que las notas estén en un rango válido y que la materia no esté vacía.
+ */
 public class CargadorNotasImpl implements CargadorNotas {
     private Scanner scanner;
 
+    /**
+     * Constructor que inicializa un nuevo Scanner para leer la entrada del usuario.
+     */
     public CargadorNotasImpl() {
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * {@inheritDoc}
+     * Permite al usuario ingresar notas y materias por consola hasta que se introduce -1 como nota.
+     * Realiza validaciones básicas sobre el valor de la nota y la materia.
+     * @return Una lista de objetos {@link Nota} ingresados por el usuario.
+     */
     @Override
     public List<Nota> cargarNotas() {
         List<Nota> notas = new ArrayList<>();

@@ -12,12 +12,14 @@ public interface ABBTDA<E extends Comparable<E>> {
     /**
      * Inserta un nuevo elemento en el ABB.
      * @param element El elemento a insertar.
+     * @throws NullPointerException si el elemento a insertar es nulo.
      */
     void insert(E element);
 
     /**
      * Elimina un elemento existente del ABB.
      * @param element El elemento a eliminar.
+     * @throws NullPointerException si el elemento a eliminar es nulo.
      */
     void remove(E element);
 
@@ -25,6 +27,7 @@ public interface ABBTDA<E extends Comparable<E>> {
      * Verifica si un elemento está presente en el ABB.
      * @param element El elemento a buscar.
      * @return true si el elemento está en el ABB, false en caso contrario.
+     * @throws NullPointerException si el elemento a buscar es nulo.
      */
     boolean contains(E element);
 

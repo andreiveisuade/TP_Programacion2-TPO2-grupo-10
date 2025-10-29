@@ -8,6 +8,8 @@ import java.util.List;
 // ============================================ 
 /**
  * Clase principal que contiene el método main para probar la implementación del Diccionario Múltiple con ABB.
+ * Demuestra las operaciones básicas como agregar, obtener, eliminar claves y valores,
+ * y la impresión del estado del diccionario.
  */
 public class Main {
     /**

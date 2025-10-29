@@ -4,17 +4,26 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
-// ============================================ 
-// IMPLEMENTACIÓN AVL
-// ============================================ 
+/**
+ * Implementación de un Árbol AVL (Adelson-Velskii y Landis).
+ * Este árbol binario de búsqueda se auto-balancea para asegurar que las operaciones
+ * de búsqueda, inserción y eliminación mantengan una complejidad logarítmica (O(log n)).
+ * @param <E> El tipo de dato de los elementos que se almacenarán en el árbol, debe ser comparable.
+ */
 public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
     private NodeAVL<E> root;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void initialize() {
         root = null;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void insert(E element) {
         if (element == null) {
@@ -23,6 +32,14 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         root = insertRecursive(root, element);
     }
 
+    /**
+     * Método auxiliar recursivo para insertar un elemento en el árbol AVL.
+     * Realiza la inserción como en un ABB normal y luego aplica las rotaciones necesarias
+     * para mantener el balance del árbol.
+     * @param node El nodo actual en la recursión.
+     * @param element El elemento a insertar.
+     * @return La raíz del subárbol modificado.
+     */
     private NodeAVL<E> insertRecursive(NodeAVL<E> node, E element) {
         // 1. INSERCIÓN NORMAL DE ABB
         if (node == null) {
@@ -73,6 +90,9 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         return node;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void remove(E element) {
         if (element == null) {
@@ -81,6 +101,14 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         root = removeRecursive(root, element);
     }
 
+    /**
+     * Método auxiliar recursivo para eliminar un elemento del árbol AVL.
+     * Realiza la eliminación como en un ABB normal y luego aplica las rotaciones necesarias
+     * para mantener el balance del árbol.
+     * @param node El nodo actual en la recursión.
+     * @param element El elemento a eliminar.
+     * @return La raíz del subárbol modificado.
+     */
     private NodeAVL<E> removeRecursive(NodeAVL<E> node, E element) {
         if (node == null) {
             return null;
@@ -142,6 +170,11 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         return node;
     }
 
+    /**
+     * Encuentra el nodo con el valor mínimo en un subárbol dado.
+     * @param node La raíz del subárbol donde buscar el mínimo.
+     * @return El nodo con el valor mínimo.
+     */
     private NodeAVL<E> findMin(NodeAVL<E> node) {
         while (node.getLeft() != null) {
             node = node.getLeft();
@@ -149,17 +182,16 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         return node;
     }
 
-    // ============================================ 
-    // MÉTODOS DE ROTACIÓN
-    // ============================================ 
-
     /**
-     * Rotación Simple a la Derecha
+     * Realiza una rotación simple a la derecha para balancear el árbol.
+     * Se aplica cuando hay un desbalance Izquierda-Izquierda.
      *       y                               x
      *      / \     Rotación Derecha        / \
      *     x   T3   – – – – – – – >        T1  y
      *    / \                                  / \
      *   T1  T2                               T2  T3
+     * @param y El nodo desbalanceado (raíz del subárbol a rotar).
+     * @return La nueva raíz del subárbol después de la rotación.
      */
     private NodeAVL<E> rotateRight(NodeAVL<E> y) {
         NodeAVL<E> x = y.getLeft();
@@ -177,12 +209,15 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
     }
 
     /**
-     * Rotación Simple a la Izquierda
+     * Realiza una rotación simple a la izquierda para balancear el árbol.
+     * Se aplica cuando hay un desbalance Derecha-Derecha.
      *     x                                y
      *    / \      Rotación Izquierda      / \
      *   T1  y     – – – – – – – >        x   T3
      *      / \                           / \
      *     T2  T3                        T1  T2
+     * @param x El nodo desbalanceado (raíz del subárbol a rotar).
+     * @return La nueva raíz del subárbol después de la rotación.
      */
     private NodeAVL<E> rotateLeft(NodeAVL<E> x) {
         NodeAVL<E> y = x.getRight();
@@ -199,14 +234,20 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         return y; // Nueva raíz
     }
 
-    // ============================================ 
-    // MÉTODOS AUXILIARES PARA AVL
-    // ============================================ 
-
+    /**
+     * Obtiene la altura de un nodo. Retorna 0 si el nodo es nulo.
+     * @param node El nodo del cual obtener la altura.
+     * @return La altura del nodo.
+     */
     private int height(NodeAVL<E> node) {
         return (node == null) ? 0 : node.getHeight();
     }
 
+    /**
+     * Actualiza la altura de un nodo basándose en las alturas de sus hijos.
+     * La altura de un nodo es 1 + el máximo de las alturas de sus hijos.
+     * @param node El nodo cuya altura se va a actualizar.
+     */
     private void updateHeight(NodeAVL<E> node) {
         if (node != null) {
             node.setHeight(1 + Math.max(height(node.getLeft()), height(node.getRight())));
@@ -214,9 +255,10 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
     }
 
     /**
-     * Factor de Balance = Altura(Subárbol Derecho) - Altura(Subárbol Izquierdo)
-     * Balance > 1  → Subárbol izquierdo más pesado
-     * Balance < -1 → Subárbol derecho más pesado
+     * Calcula el factor de balance de un nodo.
+     * El factor de balance se define como: Altura(Subárbol Izquierdo) - Altura(Subárbol Derecho).
+     * @param node El nodo del cual calcular el factor de balance.
+     * @return El factor de balance del nodo.
      */
     private int getBalance(NodeAVL<E> node) {
         if (node == null) {
@@ -225,10 +267,9 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         return height(node.getLeft()) - height(node.getRight());
     }
 
-    // ============================================ 
-    // MÉTODO CONTAINS
-    // ============================================ 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean contains(E element) {
         if (element == null) {
@@ -237,6 +278,9 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         return containsRecursive(root, element);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public E get(E element) {
         if (element == null) {
@@ -245,6 +289,12 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         return getRecursive(root, element);
     }
 
+    /**
+     * Método auxiliar recursivo para obtener un elemento del árbol.
+     * @param node El nodo actual en la recursión.
+     * @param element El elemento a buscar.
+     * @return El elemento encontrado, o null si no existe.
+     */
     private E getRecursive(NodeAVL<E> node, E element) {
         if (node == null) {
             return null;
@@ -261,6 +311,12 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         }
     }
 
+    /**
+     * Método auxiliar recursivo para verificar si un elemento está presente en el árbol.
+     * @param node El nodo actual en la recursión.
+     * @param element El elemento a buscar.
+     * @return true si el elemento está en el árbol, false en caso contrario.
+     */
     private boolean containsRecursive(NodeAVL<E> node, E element) {
         if (node == null) {
             return false;
@@ -277,10 +333,9 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         }
     }
 
-    // ============================================ 
-    // RECORRIDO IN-ORDER (ELEMENTOS ORDENADOS)
-    // ============================================ 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String inOrder() {
         StringBuilder sb = new StringBuilder();
@@ -288,6 +343,9 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         return sb.toString().trim();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public ArrayList<E> inOrderTraversal() {
         ArrayList<E> elements = new ArrayList<>();
@@ -295,6 +353,11 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         return elements;
     }
 
+    /**
+     * Método auxiliar recursivo para realizar un recorrido in-order del árbol.
+     * @param node El nodo actual en la recursión.
+     * @param sb El StringBuilder para acumular los elementos.
+     */
     private void inOrderRecursive(NodeAVL<E> node, StringBuilder sb) {
         if (node != null) {
             inOrderRecursive(node.getLeft(), sb);
@@ -303,10 +366,9 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         }
     }
 
-    // ============================================ 
-    // RECORRIDO POR NIVELES (BFS)
-    // ============================================ 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void printByLevels() {
         if (root == null) {
@@ -346,10 +408,9 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         System.out.println();
     }
 
-    // ============================================ 
-    // OBTENER ARREGLO ORDENADO
-    // ============================================ 
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int[] getOrderedArray() {
         ArrayList<E> elements = new ArrayList<>();
@@ -363,6 +424,11 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         return array;
     }
 
+    /**
+     * Método auxiliar recursivo para recolectar los elementos del árbol en orden in-order.
+     * @param node El nodo actual en la recursión.
+     * @param elements La lista donde se acumularán los elementos.
+     */
     private void collectInOrder(NodeAVL<E> node, ArrayList<E> elements) {
         if (node != null) {
             collectInOrder(node.getLeft(), elements);
@@ -371,15 +437,18 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getHeight() {
         return height(root);
     }
 
-    // ============================================ 
-    // VISUALIZACIÓN GRÁFICA DEL ÁRBOL
-    // ============================================ 
-
+    /**
+     * Imprime una representación visual del árbol AVL en formato ASCII.
+     * Muestra el valor del nodo, su altura y su factor de balance.
+     */
     public void printTree() {
         if (root == null) {
             System.out.println("El árbol está vacío.");
@@ -394,6 +463,12 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         System.out.println();
     }
 
+    /**
+     * Método auxiliar recursivo para imprimir la estructura del árbol en formato ASCII.
+     * @param node El nodo actual a imprimir.
+     * @param prefix El prefijo de la línea para la indentación.
+     * @param isTail true si el nodo es el último hijo de su padre, false en caso contrario.
+     */
     private void printTreeRecursive(NodeAVL<E> node, String prefix, boolean isTail) {
         if (node == null) {
             return;
