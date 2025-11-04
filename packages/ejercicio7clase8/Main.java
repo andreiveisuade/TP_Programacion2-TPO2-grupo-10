@@ -1,7 +1,5 @@
 package ejercicio7clase8;
 
-import java.util.List;
-
 // ============================================ 
 // PROGRAMA PRINCIPAL DE PRUEBA
 // ============================================ 

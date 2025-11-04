@@ -194,11 +194,11 @@ public class ABB<E extends Comparable<E>> implements ABBTDA<E> {
     }
 
     @Override
-    public void forEachInOrder(java.util.function.Consumer<E> action) {
+    public void forEachInOrder(ImplementacionConsumer<E> action) {
         forEachInOrderRecursive(root, action);
     }
 
-    private void forEachInOrderRecursive(NodeABB<E> node, java.util.function.Consumer<E> action) {
+    private void forEachInOrderRecursive(NodeABB<E> node, ImplementacionConsumer<E> action) {
         if (node != null) {
             forEachInOrderRecursive(node.getLeft(), action);
             action.accept(node.getValue());

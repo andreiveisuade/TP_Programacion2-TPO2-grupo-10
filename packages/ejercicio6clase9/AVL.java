@@ -1,8 +1,6 @@
 package ejercicio6clase9;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+
 
 /**
  * Implementación de un Árbol AVL (Adelson-Velskii y Landis).
@@ -343,12 +341,9 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         return sb.toString().trim();
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
-    public ArrayList<E> inOrderTraversal() {
-        ArrayList<E> elements = new ArrayList<>();
+    public ImplementacionArrayList<E> inOrderTraversal() {
+        ImplementacionArrayList<E> elements = new ImplementacionArrayList<>();
         collectInOrder(root, elements);
         return elements;
     }
@@ -380,7 +375,7 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
         System.out.println("║      ÁRBOL AVL POR NIVELES                ║");
         System.out.println("╚════════════════════════════════════════════╝");
 
-        Queue<NodeAVL<E>> queue = new LinkedList<>();
+        ImplementacionQueue<NodeAVL<E>> queue = new ImplementacionQueue<>();
         queue.add(root);
         int level = 0;
 
@@ -413,7 +408,7 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
      */
     @Override
     public int[] getOrderedArray() {
-        ArrayList<E> elements = new ArrayList<>();
+        ImplementacionArrayList<E> elements = new ImplementacionArrayList<>();
         collectInOrder(root, elements);
         
         int[] array = new int[elements.size()];
@@ -429,7 +424,7 @@ public class AVL<E extends Comparable<E>> implements AVLTDA<E> {
      * @param node El nodo actual en la recursión.
      * @param elements La lista donde se acumularán los elementos.
      */
-    private void collectInOrder(NodeAVL<E> node, ArrayList<E> elements) {
+    private void collectInOrder(NodeAVL<E> node, ImplementacionArrayList<E> elements) {
         if (node != null) {
             collectInOrder(node.getLeft(), elements);
             elements.add(node.getValue());

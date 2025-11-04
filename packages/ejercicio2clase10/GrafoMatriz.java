@@ -1,11 +1,13 @@
 package ejercicio2clase10;
 
-import java.util.*;
+import ejercicio3clase10.ImplementacionArrayList;
+import ejercicio3clase10.ImplementacionHashMap;
+import ejercicio3clase10.ImplementacionHashSet;
 
 public class GrafoMatriz<E> implements GrafoTDA<E> {
     private int[][] matrizAdyacencia;
-    private Map<E, Integer> verticeIndice; // Mapeo vértice → índice en matriz
-    private List<E> indiceVertice; // Mapeo índice → vértice
+    private ImplementacionHashMap<E, Integer> verticeIndice; // Mapeo vértice → índice en matriz
+    private ImplementacionArrayList<E> indiceVertice; // Mapeo índice → vértice
     private int maxVertices;
     private int cantidadVertices;
     private static final int SIN_ARISTA = 0;
@@ -14,8 +16,8 @@ public class GrafoMatriz<E> implements GrafoTDA<E> {
         this.maxVertices = maxVertices;
         this.cantidadVertices = 0;
         this.matrizAdyacencia = new int[maxVertices][maxVertices];
-        this.verticeIndice = new HashMap<>();
-        this.indiceVertice = new ArrayList<>();
+        this.verticeIndice = new ImplementacionHashMap<>();
+        this.indiceVertice = new ImplementacionArrayList<>();
         
         for (int i = 0; i < maxVertices; i++) {
             for (int j = 0; j < maxVertices; j++) {
@@ -127,8 +129,8 @@ public class GrafoMatriz<E> implements GrafoTDA<E> {
         return mayorCosto;
     }
 
-    public Set<E> predecesores(E vertice) {
-        Set<E> predecesores = new HashSet<>();
+    public ImplementacionHashSet<E> predecesores(E vertice) {
+        ImplementacionHashSet<E> predecesores = new ImplementacionHashSet<>();
         int indiceDestino = verticeIndice.get(vertice);
         for (int i = 0; i < cantidadVertices; i++) {
             if (matrizAdyacencia[i][indiceDestino] != SIN_ARISTA) {

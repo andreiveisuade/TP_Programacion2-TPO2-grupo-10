@@ -1,6 +1,6 @@
 package ejercicio2clase10;
 
-import java.util.Set;
+import ejercicio3clase10.ImplementacionHashSet;
 
 public class Main {
     public static void main(String[] args) {
@@ -56,7 +56,7 @@ public class Main {
         System.out.println("╚════════════════════════════════════════════╝\n");
         
         for (String v : vertices) {
-            Set<String> preds = grafo.predecesores(v);
+            ImplementacionHashSet<String> preds = grafo.predecesores(v);
             System.out.printf("Vértice %s → Predecesores: %s\n", v, preds.isEmpty() ? "(ninguno)" : preds);
         }
     }

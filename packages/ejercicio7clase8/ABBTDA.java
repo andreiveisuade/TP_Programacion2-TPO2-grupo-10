@@ -1,8 +1,5 @@
 package ejercicio7clase8;
 
-// ============================================
-// INTERFAZ TDA ABB
-// ============================================
 /**
  * Interfaz para un Tipo de Dato Abstracto (TDA) de Árbol Binario de Búsqueda (ABB).
  * Define las operaciones básicas que debe soportar un ABB.
@@ -53,5 +50,5 @@ public interface ABBTDA<E extends Comparable<E>> {
      * Realiza una acción para cada elemento del árbol en orden in-order.
      * @param action La acción a realizar para cada elemento.
      */
-    void forEachInOrder(java.util.function.Consumer<E> action);
+    void forEachInOrder(ImplementacionConsumer<E> action);
 }

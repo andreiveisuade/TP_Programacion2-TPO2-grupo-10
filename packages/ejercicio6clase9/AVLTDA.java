@@ -1,6 +1,6 @@
 package ejercicio6clase9;
 
-import java.util.ArrayList;
+
 
 /**
  * Interfaz que define el Tipo de Dato Abstracto (TDA) para un Árbol AVL (Adelson-Velskii y Landis).
@@ -50,7 +50,7 @@ public interface AVLTDA<E extends Comparable<E>> {
      * Realiza un recorrido in-order del árbol y retorna los elementos en un ArrayList.
      * @return Un ArrayList con los elementos del árbol en orden ascendente.
      */
-    ArrayList<E> inOrderTraversal();
+    ImplementacionArrayList<E> inOrderTraversal();
 
     /**
      * Imprime el árbol por niveles (recorrido BFS), mostrando la estructura del árbol.

@@ -1,17 +1,12 @@
 package ejercicio3clase10;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+
 
 public class GrafoListas<E> implements GrafoTDA<E> {
-    private Map<E, NodoVertice<E>> verticesMap;
+    private ImplementacionHashMap<E, NodoVertice<E>> verticesMap;
 
     public GrafoListas() {
-        this.verticesMap = new HashMap<>();
+        this.verticesMap = new ImplementacionHashMap<>();
     }
 
     @Override
@@ -98,9 +93,9 @@ public class GrafoListas<E> implements GrafoTDA<E> {
     }
 
     // Métodos específicos del ejercicio 3
-    public Set<E> verticesAislados() {
-        Set<E> aislados = new HashSet<>(verticesMap.keySet());
-        Set<E> tienenEntrantes = new HashSet<>();
+    public ImplementacionHashSet<E> verticesAislados() {
+        ImplementacionHashSet<E> aislados = verticesMap.keySet();
+        ImplementacionHashSet<E> tienenEntrantes = new ImplementacionHashSet<>();
 
         for (NodoVertice<E> v : verticesMap.values()) {
             if (v.getAdyacentes() != null) {
@@ -112,12 +107,14 @@ public class GrafoListas<E> implements GrafoTDA<E> {
                 }
             }
         }
-        aislados.removeAll(tienenEntrantes);
+        for (Object e : tienenEntrantes.keySet()) {
+            aislados.remove(e);
+        }
         return aislados;
     }
 
-    public Set<E> verticesPuente(E origen, E destino) {
-        Set<E> puentes = new HashSet<>();
+    public ImplementacionHashSet<E> verticesPuente(E origen, E destino) {
+        ImplementacionHashSet<E> puentes = new ImplementacionHashSet<>();
         NodoVertice<E> nodoOrigen = verticesMap.get(origen);
         if (nodoOrigen == null) {
             return puentes; // O lanzar excepción si se prefiere
@@ -148,12 +145,18 @@ public class GrafoListas<E> implements GrafoTDA<E> {
             if (arista == null) {
                 System.out.println("(sin aristas)");
             } else {
-                List<String> aristasStr = new ArrayList<>();
+                ImplementacionArrayList<String> aristasStr = new ImplementacionArrayList<>();
                 while (arista != null) {
                     aristasStr.add(String.format("%s(%d)", arista.getDestino(), arista.getPeso()));
                     arista = arista.getSiguiente();
                 }
-                System.out.println(String.join(", ", aristasStr));
+                for (int i = 0; i < aristasStr.size(); i++) {
+                    System.out.print(aristasStr.get(i));
+                    if (i < aristasStr.size() - 1) {
+                        System.out.print(", ");
+                    }
+                }
+                System.out.println();
             }
         }
         System.out.println();

@@ -2,11 +2,6 @@ package ejercicio6clase9;
 
 import java.util.Scanner;
 
-/**
- * Clase principal que demuestra el funcionamiento de un Árbol AVL interactivo.
- * Permite al usuario insertar números enteros para construir un AVL,
- * y luego muestra el árbol por niveles, una visualización gráfica y un arreglo ordenado de sus elementos.
- */
 public class Main {
     /**
      * Método principal que inicia la aplicación del árbol AVL interactivo.

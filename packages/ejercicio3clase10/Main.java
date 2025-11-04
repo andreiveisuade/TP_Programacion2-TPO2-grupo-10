@@ -1,8 +1,6 @@
 package ejercicio3clase10;
 
-import java.util.Set;
-import java.util.ArrayList;
-import java.util.List;
+import ejercicio3clase10.ImplementacionHashSet;
 
 /**
  * Clase principal que demuestra el funcionamiento de la implementación de un grafo
@@ -62,7 +60,7 @@ public class Main {
         System.out.println("|  EJERCICIO 3.1: Vértices Aislados        |");
         System.out.println("------------------------------------------------\n");
 
-        Set<String> aislados = grafo.verticesAislados();
+        ImplementacionHashSet<String> aislados = grafo.verticesAislados();
         System.out.println("Vértices aislados: " + aislados);
         
         if (aislados.isEmpty()) {
@@ -95,7 +93,7 @@ public class Main {
             String destino = caso[1];
             
             try {
-                Set<String> puentes = grafo.verticesPuente(origen, destino);
+                ImplementacionHashSet<String> puentes = grafo.verticesPuente(origen, destino);
                 System.out.printf("Puentes entre %s y %s: ", origen, destino); 
                 
                 if (puentes.isEmpty()) {
