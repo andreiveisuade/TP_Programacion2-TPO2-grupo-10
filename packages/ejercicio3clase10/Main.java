@@ -16,8 +16,7 @@ public class Main {
      * @param args Argumentos de la línea de comandos (no utilizados en esta aplicación).
      */
     public static void main(String[] args) {
-        GrafoTDA<String> grafo = new GrafoListas<>();
-        grafo.inicializar();
+        GrafoListas<String> grafo = new GrafoListas<>();
 
         System.out.println("------------------------------------------------");
         System.out.println("|  GRAFO CON LISTAS DE ADYACENCIA           |");
@@ -54,7 +53,7 @@ public class Main {
 
         // Mostrar el grafo
         ((GrafoListas<String>) grafo).imprimirGrafo();
-        ((GrafoListas<String>) grafo).imprimirEstadisticas();
+
 
         // ============================================ 
         // EJERCICIO 3.1: Vértices Aislados 
@@ -97,7 +96,7 @@ public class Main {
             
             try {
                 Set<String> puentes = grafo.verticesPuente(origen, destino);
-                System.out.printf("Puentes entre %s y %s: ", origen, destino);
+                System.out.printf("Puentes entre %s y %s: ", origen, destino); 
                 
                 if (puentes.isEmpty()) {
                     System.out.println("(ninguno)");

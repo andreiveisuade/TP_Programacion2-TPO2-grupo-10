@@ -4,8 +4,7 @@ import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
-        GrafoTDA<String> grafo = new GrafoMatriz<>();
-        grafo.inicializar(10);
+        GrafoMatriz<String> grafo = new GrafoMatriz<>(10);
 
         System.out.println("╔════════════════════════════════════════════╗");
         System.out.println("║  GRAFO CON MATRIZ DE ADYACENCIA           ║");
@@ -31,7 +30,7 @@ public class Main {
         System.out.println("✓ Aristas agregadas\n");
 
         // Mostrar matriz
-        ((GrafoMatriz<String>) grafo).imprimirMatriz();
+        grafo.imprimirMatriz();
 
         // Ejercicio 2.1: Mayor costo de aristas salientes
         System.out.println("╔════════════════════════════════════════════╗");
@@ -41,9 +40,13 @@ public class Main {
         for (String v : vertices) {
             try {
                 int mayorCosto = grafo.mayorCostoAristasSalientes(v);
-                System.out.printf("Vértice %s → Mayor costo: %d\n", v, mayorCosto);
-            } catch (IllegalStateException e) {
-                System.out.printf("Vértice %s → Sin aristas salientes\n", v);
+                if (mayorCosto != -1) {
+                    System.out.printf("Vértice %s → Mayor costo: %d\n", v, mayorCosto);
+                } else {
+                    System.out.printf("Vértice %s → Sin aristas salientes\n", v);
+                }
+            } catch (Exception e) {
+                System.out.printf("Vértice %s → Error al calcular costo\n", v);
             }
         }
 
