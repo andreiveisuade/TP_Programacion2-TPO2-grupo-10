@@ -174,4 +174,39 @@ public class ABB<E extends Comparable<E>> implements ABBTDA<E> {
             inOrderRecursive(node.getRight(), sb);
         }
     }
+
+    @Override
+    public E get(E element) {
+        if (element == null) {
+            throw new NullPointerException("No se permite buscar elementos nulos en el ABB.");
+        }
+        return getRecursive(root, element);
+    }
+
+    private E getRecursive(NodeABB<E> node, E element) {
+        if (node == null) {
+            return null;
+        }
+        int comparison = element.compareTo(node.getValue());
+        if (comparison == 0) return node.getValue();
+        else if (comparison < 0) return getRecursive(node.getLeft(), element);
+        else return getRecursive(node.getRight(), element);
+    }
+
+    @Override
+    public void forEachInOrder(java.util.function.Consumer<E> action) {
+        forEachInOrderRecursive(root, action);
+    }
+
+    private void forEachInOrderRecursive(NodeABB<E> node, java.util.function.Consumer<E> action) {
+        if (node != null) {
+            forEachInOrderRecursive(node.getLeft(), action);
+            action.accept(node.getValue());
+            forEachInOrderRecursive(node.getRight(), action);
+        }
+    }
+
+    public NodeABB<E> getRoot() {
+        return root;
+    }
 }

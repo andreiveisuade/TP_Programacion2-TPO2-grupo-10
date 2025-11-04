@@ -1,56 +1,68 @@
-# Ejercicio 2 de la Clase 10: Gestión de Notas
+# Ejercicio 2 de la Clase 10: Grafo con Matriz de Adyacencia
 
-Este documento presenta un análisis detallado de la eficiencia Big O de la implementación para la gestión de notas, que incluye la carga, cálculo de promedio e impresión de calificaciones.
+Este documento detalla la implementación de un TDA Grafo utilizando una **matriz de adyacencia** (implementación estática). Sobre esta estructura, se desarrollan dos métodos específicos: uno para calcular el mayor costo de las aristas salientes de un vértice y otro para encontrar todos los predecesores de un vértice.
 
-## Análisis de Eficiencia Big O
+## Explicación de Conceptos Teóricos
 
-El análisis de eficiencia Big O para el algoritmo implementado es el siguiente:
+### 📊 **1. Matriz de Adyacencia**
 
-### 1. `Nota.java` (Interfaz `Nota`)
-*   No tiene operaciones computacionales. Su complejidad es **O(1)**.
+Una **matriz de adyacencia** es una representación de grafos donde las relaciones entre vértices se almacenan en una matriz cuadrada `n x n`, donde `n` es el número de vértices.
 
-### 2. `NotaImpl.java` (Clase `NotaImpl`)
-*   El constructor y los métodos `getValor()` y `getMateria()` realizan operaciones de asignación o retorno directo. Su complejidad es **O(1)**.
+- **`matriz[i][j] = 0`**: No hay arista del vértice `i` al vértice `j`.
+- **`matriz[i][j] = peso`**: Hay una arista del vértice `i` al vértice `j` con un `peso` determinado.
 
-### 3. `CargadorNotas.java` (Interfaz `CargadorNotas`)
-*   No tiene operaciones computacionales. Su complejidad es **O(1)**.
+**Ejemplo visual:**
+```
+Grafo:           Matriz (A=0, B=1, C=2):
+  A → B (5)
+  A → C (3)      A B C
+  B → C (2)    A [0,5,3]
+               B [0,0,2]
+               C [0,0,0]
+```
 
-### 4. `CargadorNotasImpl.java` (Clase `CargadorNotasImpl`)
-*   El constructor es **O(1)**.
-*   El método `cargarNotas()`:
-    *   Inicializa un `ArrayList` (**O(1)**).
-    *   Contiene un bucle `while` que se ejecuta `n` veces, donde `n` es el número de notas ingresadas por el usuario.
-    *   Dentro del bucle, las operaciones de `Scanner` y `notas.add()` son, en promedio, **O(1)**.
-    *   Por lo tanto, la complejidad de `cargarNotas()` es **O(n)**.
+**Ventajas y Desventajas:**
+- **Ventaja:** Verificar si existe una arista entre dos vértices es una operación muy rápida de **O(1)**.
+- **Desventaja:** El espacio requerido es **O(n²)**, lo que la hace ineficiente para grafos con pocas aristas (grafos dispersos).
 
-### 5. `GestorNotas.java` (Clase `GestorNotas`)
-*   El constructor es **O(1)**.
-*   El método `calcularPromedio()`:
-    *   Realiza una iteración lineal sobre la lista de `n` notas.
-    *   Las operaciones dentro del bucle son **O(1)**.
-    *   Por lo tanto, la complejidad de `calcularPromedio()` es **O(n)**.
-*   El método `imprimirNotas()`:
-    *   Realiza una iteración lineal sobre la lista de `n` notas.
-    *   Las operaciones dentro del bucle son **O(1)**.
-    *   Por lo tanto, la complejidad de `imprimirNotas()` es **O(n)**.
+### 🗺️ **2. Mapeo de Vértices a Índices**
 
-### 6. `Main.java` (Clase principal)
-*   Las llamadas a `cargadorNotas.cargarNotas()`, `gestorNotas.imprimirNotas()` y `gestorNotas.calcularPromedio()` son las operaciones dominantes. Cada una tiene una complejidad de **O(n)**.
-*   La complejidad total del método `main` es **O(n)**.
+Como los vértices pueden ser cualquier objeto (Strings, etc.), y la matriz funciona con índices numéricos (0, 1, 2...), es necesario un mecanismo de traducción. En esta implementación, se utilizan dos estructuras para lograrlo:
 
-### Conclusión sobre la eficiencia:
+1.  **`Map<E, Integer> verticeIndice`**: Un `HashMap` que permite obtener el índice de la matriz para un vértice dado en **O(1)** en promedio.
+2.  **`List<E> indiceVertice`**: Un `ArrayList` que permite obtener el vértice a partir de un índice de la matriz en **O(1)**.
 
-El algoritmo es eficiente. La complejidad temporal dominante es **O(n)**, donde `n` es el número de notas. Esto significa que el tiempo de ejecución crece linealmente con el número de notas. Para las tareas de cargar, calcular el promedio e imprimir una lista de `n` elementos, una complejidad **O(n)** es óptima, ya que se requiere al menos una pasada por cada elemento para procesarlo.
+---
 
-### Componentes evaluados:
+## 📈 Análisis de Eficiencia (Big O Notation)
 
-*   **Estructuras de datos:** El uso de `ArrayList` es apropiado y eficiente para esta tarea, ofreciendo adiciones y accesos en tiempo promedio constante.
-*   **Operaciones de E/S:** Las operaciones de entrada (`Scanner`) y salida (`System.out.println`) contribuyen a la complejidad lineal general, ya que se realizan por cada nota.
-*   **Algoritmos:** Los algoritmos implementados para la carga, cálculo del promedio y visualización son recorridos lineales simples, que son la forma más eficiente de realizar estas operaciones en una colección de datos.
+Asumimos `n` como el número de vértices en el grafo.
 
-### 🔑 Conceptos Clave para Dominar
+### Complejidad de Operaciones Básicas
 
-1.  **Complejidad Lineal (O(n)):** Entender por qué las operaciones de procesamiento de listas son inherentemente lineales.
-2.  **Eficiencia de `ArrayList`:** Reconocer que `add()` y `get()` son O(1) en promedio.
-3.  **Optimización de E/S:** Aunque las operaciones de E/S son lentas en comparación con la CPU, su impacto en la complejidad Big O es lineal cuando se procesa cada elemento una vez.
-4.  **Diseño Modular:** La separación de responsabilidades en interfaces y clases (`Nota`, `CargadorNotas`, `GestorNotas`) facilita el análisis y mantenimiento del código.
+- **`agregarVertice(v)`**: **O(1)**. Añadir el vértice al mapa y a la lista es una operación de tiempo constante amortizado.
+- **`eliminarVertice(v)`**: **O(n²)**. Aunque la implementación provista intenta optimizar moviendo el último elemento, la necesidad de reajustar la matriz y los índices sigue siendo costosa. Una implementación más simple requeriría reconstruir los mapeos, lo que es O(n).
+- **`agregarArista(o, d, p)`**: **O(1)**. Se obtienen los índices de origen y destino en O(1) y se asigna el peso en la matriz, también en O(1).
+- **`existeArista(o, d)`**: **O(1)**. La principal ventaja de la matriz de adyacencia.
+
+### Complejidad de Métodos del Ejercicio
+
+#### 1. **`mayorCostoAristasSalientes(vertice)`**
+- **Algoritmo:**
+  1. Obtener el índice `i` del `vértice` (O(1) gracias al `HashMap`).
+  2. Recorrer toda la fila `i` de la matriz, que contiene todas las aristas salientes.
+  3. Mantener un registro del peso máximo encontrado.
+- **Complejidad:** El recorrido de la fila tiene `n` elementos. Por lo tanto, la complejidad es **O(n)**.
+
+#### 2. **`predecesores(vertice)`**
+- **Algoritmo:**
+  1. Obtener el índice `j` del `vértice` (O(1)).
+  2. Recorrer toda la columna `j` de la matriz. Una entrada `matriz[i][j]` con peso significa que el vértice `i` es un predecesor.
+  3. Por cada arista encontrada en la columna, se añade el vértice correspondiente al índice `i` al conjunto de predecesores.
+- **Complejidad:** El recorrido de la columna tiene `n` elementos. Por lo tanto, la complejidad es **O(n)**.
+
+### Conclusión sobre la Eficiencia
+
+La implementación con matriz de adyacencia es ideal para **grafos densos**, donde el número de aristas es cercano a n². En estos casos, la velocidad de **O(1)** para `existeArista` y `agregarArista` es una gran ventaja.
+
+Para los métodos específicos del ejercicio, la complejidad **O(n)** es la esperada, ya que es necesario inspeccionar todas las posibles conexiones (una fila o una columna completa) para encontrar la información requerida.

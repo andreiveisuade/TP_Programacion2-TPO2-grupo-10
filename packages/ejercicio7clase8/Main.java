@@ -1,6 +1,5 @@
 package ejercicio7clase8;
 
-import ejercicio6clase9.AVLTDA;
 import java.util.List;
 
 // ============================================ 
@@ -21,7 +20,7 @@ public class Main {
         Dictionary<String, Integer> dictionary = new Dictionary<>();
         dictionary.initialize();
 
-        System.out.println("=== PRUEBA DEL DICCIONARIO MÚLTIPLE CON ABB (EFICIENTE) ===\n");
+        System.out.println("=== PRUEBA DEL DICCIONARIO MÚLTIPLE CON ABB ===\n");
 
         // Agregar valores
         System.out.println("1. Agregando valores...");
@@ -44,17 +43,17 @@ public class Main {
 
         // Consultar valores de una clave
         System.out.println("\n3. Consultando valores de 'frutas':");
-        AVLTDA<Integer> frutasAVL = dictionary.get("frutas");
-        if (frutasAVL != null) {
-            System.out.println("   In-order: " + frutasAVL.inOrder());
+        ABBTDA<Integer> frutasABB = dictionary.get("frutas");
+        if (frutasABB != null) {
+            System.out.println("   In-order: " + frutasABB.inOrder());
         }
 
         // Verificar si contiene un valor
         System.out.println("\n4. Verificando si 'frutas' contiene el valor 8:");
-        System.out.println("   Resultado: " + frutasAVL.contains(8));
+        System.out.println("   Resultado: " + frutasABB.contains(8));
         
         System.out.println("   Verificando si 'frutas' contiene el valor 100:");
-        System.out.println("   Resultado: " + frutasAVL.contains(100));
+        System.out.println("   Resultado: " + frutasABB.contains(100));
 
         // Eliminar un valor específico
         System.out.println("\n5. Eliminando el valor 2 de 'frutas'...");

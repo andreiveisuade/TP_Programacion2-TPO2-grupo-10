@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="JUnit Jupiter" tests="133" skipped="0" failures="0" errors="0" time="0.103" hostname="192.168.1.2" timestamp="2025-10-29T09:27:51">
+<properties>
+<property name="apple.awt.application.name" value="ConsoleLauncher"/>
+<property name="file.encoding" value="UTF-8"/>
+<property name="file.separator" value="/"/>
+<property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+<property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+<property name="java.class.path" value="lib/junit-platform-console-standalone-1.10.0.jar"/>
+<property name="java.class.version" value="69.0"/>
+<property name="java.home" value="/opt/homebrew/Cellar/openjdk/25/libexec/openjdk.jdk/Contents/Home"/>
+<property name="java.io.tmpdir" value="/var/folders/t7/n7xzx8pn7259h8h0xypmnk540000gn/T/"/>
+<property name="java.library.path" value="/Users/andreiveis/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+<property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+<property name="java.runtime.version" value="25"/>
+<property name="java.specification.name" value="Java Platform API Specification"/>
+<property name="java.specification.vendor" value="Oracle Corporation"/>
+<property name="java.specification.version" value="25"/>
+<property name="java.vendor" value="Homebrew"/>
+<property name="java.vendor.url" value="https://github.com/Homebrew/homebrew-core/issues"/>
+<property name="java.vendor.url.bug" value="https://github.com/Homebrew/homebrew-core/issues"/>
+<property name="java.vendor.version" value="Homebrew"/>
+<property name="java.version" value="25"/>
+<property name="java.version.date" value="2025-09-16"/>
+<property name="java.vm.compressedOopsMode" value="Zero based"/>
+<property name="java.vm.info" value="mixed mode, sharing"/>
+<property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+<property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+<property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+<property name="java.vm.specification.version" value="25"/>
+<property name="java.vm.vendor" value="Homebrew"/>
+<property name="java.vm.version" value="25"/>
+<property name="jdk.debug" value="release"/>
+<property name="line.separator" value="
+"/>
+<property name="native.encoding" value="UTF-8"/>
+<property name="os.arch" value="aarch64"/>
+<property name="os.name" value="Mac OS X"/>
+<property name="os.version" value="26.0.1"/>
+<property name="path.separator" value=":"/>
+<property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+<property name="stderr.encoding" value="UTF-8"/>
+<property name="stdin.encoding" value="UTF-8"/>
+<property name="stdout.encoding" value="UTF-8"/>
+<property name="sun.arch.data.model" value="64"/>
+<property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk/25/libexec/openjdk.jdk/Contents/Home/lib"/>
+<property name="sun.cpu.endian" value="little"/>
+<property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+<property name="sun.java.command" value="lib/junit-platform-console-standalone-1.10.0.jar --scan-classpath --class-path bin/ --reports-dir build/test-results"/>
+<property name="sun.java.launcher" value="SUN_STANDARD"/>
+<property name="sun.jnu.encoding" value="UTF-8"/>
+<property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+<property name="user.country" value="AR"/>
+<property name="user.dir" value="/Users/andreiveis/UADE/3er cuatrimestre/Programacion_II/03_Trabajos_Practicos/TP_Programacion2-TPO2-grupo-10"/>
+<property name="user.home" value="/Users/andreiveis"/>
+<property name="user.language" value="en"/>
+<property name="user.name" value="andreiveis"/>
+<property name="user.timezone" value="America/Argentina/Buenos_Aires"/>
+</properties>
+<testcase name="testAgregarAristaNonExistentDestination()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testAgregarAristaNonExistentDestination()]
+display-name: Test: agregarArista() con destino inexistente lanza IllegalArgumentException
+]]></system-out>
+</testcase>
+<testcase name="testInOrderTraversal()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testInOrderTraversal()]
+display-name: testInOrderTraversal()
+]]></system-out>
+</testcase>
+<testcase name="testCargarNotasConMateriaEnBlanco()" classname="ejercicio2clase10.CargadorNotasImplTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.CargadorNotasImplTest]/[method:testCargarNotasConMateriaEnBlanco()]
+display-name: testCargarNotasConMateriaEnBlanco()
+]]></system-out>
+</testcase>
+<testcase name="testAgregarAristaNegativeWeight()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testAgregarAristaNegativeWeight()]
+display-name: Test: agregarArista() con peso negativo lanza IllegalArgumentException
+]]></system-out>
+</testcase>
+<testcase name="testInsertNull()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testInsertNull()]
+display-name: testInsertNull()
+]]></system-out>
+</testcase>
+<testcase name="testRightLeftRotation()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testRightLeftRotation()]
+display-name: testRightLeftRotation()
+]]></system-out>
+</testcase>
+<testcase name="testStressInsertAndRemove()" classname="ejercicio6clase9.AVLTest" time="0.004">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testStressInsertAndRemove()]
+display-name: testStressInsertAndRemove()
+]]></system-out>
+</testcase>
+<testcase name="testAgregarAristaSimple()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testAgregarAristaSimple()]
+display-name: Test: agregarArista() la añade correctamente
+]]></system-out>
+</testcase>
+<testcase name="testCargarNotasConEntradaNoNumericaYLuegoValida()" classname="ejercicio2clase10.CargadorNotasImplTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.CargadorNotasImplTest]/[method:testCargarNotasConEntradaNoNumericaYLuegoValida()]
+display-name: testCargarNotasConEntradaNoNumericaYLuegoValida()
+]]></system-out>
+</testcase>
+<testcase name="testPesoAristaNonExistentOrigin()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testPesoAristaNonExistentOrigin()]
+display-name: Test: pesoArista() lanza excepción si el origen no existe
+]]></system-out>
+</testcase>
+<testcase name="testAlturaYBalanceDespuesDeRotacionDobleDerechaIzquierda()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testAlturaYBalanceDespuesDeRotacionDobleDerechaIzquierda()]
+display-name: testAlturaYBalanceDespuesDeRotacionDobleDerechaIzquierda()
+]]></system-out>
+</testcase>
+<testcase name="testEliminarAristaNonExistent()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testEliminarAristaNonExistent()]
+display-name: Test: eliminarArista() no hace nada si la arista no existe
+]]></system-out>
+</testcase>
+<testcase name="testVerticesPuenteMultipleBridges()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesPuenteMultipleBridges()]
+display-name: Test: verticesPuente() con múltiples puentes
+]]></system-out>
+</testcase>
+<testcase name="testCargarNotasConEntradaNumericaPeroNoEntera()" classname="ejercicio2clase10.CargadorNotasImplTest" time="0.01">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.CargadorNotasImplTest]/[method:testCargarNotasConEntradaNumericaPeroNoEntera()]
+display-name: testCargarNotasConEntradaNumericaPeroNoEntera()
+]]></system-out>
+</testcase>
+<testcase name="testInOrder()" classname="ejercicio7clase8.ABBTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.ABBTest]/[method:testInOrder()]
+display-name: testInOrder()
+]]></system-out>
+</testcase>
+<testcase name="testVerticesAisladosEnUnCicloCompleto()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesAisladosEnUnCicloCompleto()]
+display-name: Test: verticesAislados() en un ciclo completo
+]]></system-out>
+</testcase>
+<testcase name="testEliminarVerticeEmptyGraph()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testEliminarVerticeEmptyGraph()]
+display-name: Test: eliminarVertice() lanza excepción si el grafo está vacío
+]]></system-out>
+</testcase>
+<testcase name="testInOrderEmpty()" classname="ejercicio7clase8.ABBTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.ABBTest]/[method:testInOrderEmpty()]
+display-name: testInOrderEmpty()
+]]></system-out>
+</testcase>
+<testcase name="testEmptyAVL()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testEmptyAVL()]
+display-name: testEmptyAVL()
+]]></system-out>
+</testcase>
+<testcase name="testVerticesAisladosConUnSoloVertice()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesAisladosConUnSoloVertice()]
+display-name: Test: verticesAislados() con un solo vértice aislado
+]]></system-out>
+</testcase>
+<testcase name="testInsertAndContains()" classname="ejercicio7clase8.ABBTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.ABBTest]/[method:testInsertAndContains()]
+display-name: testInsertAndContains()
+]]></system-out>
+</testcase>
+<testcase name="testEliminarAristaNonExistentOrigin()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testEliminarAristaNonExistentOrigin()]
+display-name: Test: eliminarArista() no hace nada si el origen no existe
+]]></system-out>
+</testcase>
+<testcase name="testImprimirNotas()" classname="ejercicio2clase10.GestorNotasTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.GestorNotasTest]/[method:testImprimirNotas()]
+display-name: testImprimirNotas()
+]]></system-out>
+</testcase>
+<testcase name="testCargarNotasConEntradaInvalidaNoNumerica()" classname="ejercicio2clase10.CargadorNotasImplTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.CargadorNotasImplTest]/[method:testCargarNotasConEntradaInvalidaNoNumerica()]
+display-name: testCargarNotasConEntradaInvalidaNoNumerica()
+]]></system-out>
+</testcase>
+<testcase name="testValidGradeTen()" classname="ejercicio2clase10.NotaImplTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.NotaImplTest]/[method:testValidGradeTen()]
+display-name: testValidGradeTen()
+]]></system-out>
+</testcase>
+<testcase name="testEliminarVerticeNull()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testEliminarVerticeNull()]
+display-name: Test: eliminarVertice() lanza excepción si el vértice es nulo
+]]></system-out>
+</testcase>
+<testcase name="testAgregarAristaZeroWeight()" classname="ejercicio3clase10.GrafoListasTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testAgregarAristaZeroWeight()]
+display-name: Test: agregarArista() con peso cero lanza IllegalArgumentException
+]]></system-out>
+</testcase>
+<testcase name="testRemoveNodeWithTwoChildren()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testRemoveNodeWithTwoChildren()]
+display-name: testRemoveNodeWithTwoChildren()
+]]></system-out>
+</testcase>
+<testcase name="testVerticesAisladosEmptyGraph()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesAisladosEmptyGraph()]
+display-name: Test: verticesAislados() con grafo vacío
+]]></system-out>
+</testcase>
+<testcase name="testVerticesPuenteNoBridges()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesPuenteNoBridges()]
+display-name: Test: verticesPuente() sin puentes
+]]></system-out>
+</testcase>
+<testcase name="testGetOrderedArrayUnicoElemento()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testGetOrderedArrayUnicoElemento()]
+display-name: testGetOrderedArrayUnicoElemento()
+]]></system-out>
+</testcase>
+<testcase name="testCalcularPromedioSinNotas()" classname="ejercicio2clase10.GestorNotasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.GestorNotasTest]/[method:testCalcularPromedioSinNotas()]
+display-name: testCalcularPromedioSinNotas()
+]]></system-out>
+</testcase>
+<testcase name="testRemoveNonExistentValue()" classname="ejercicio7clase8.DictionaryTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.DictionaryTest]/[method:testRemoveNonExistentValue()]
+display-name: testRemoveNonExistentValue()
+]]></system-out>
+</testcase>
+<testcase name="testGetNullKey()" classname="ejercicio7clase8.DictionaryTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.DictionaryTest]/[method:testGetNullKey()]
+display-name: testGetNullKey()
+]]></system-out>
+</testcase>
+<testcase name="testVerticesAisladosOnlyIncoming()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesAisladosOnlyIncoming()]
+display-name: Test: verticesAislados() con vértices que solo tienen aristas entrantes
+]]></system-out>
+</testcase>
+<testcase name="testCalcularPromedioConNotas()" classname="ejercicio2clase10.GestorNotasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.GestorNotasTest]/[method:testCalcularPromedioConNotas()]
+display-name: testCalcularPromedioConNotas()
+]]></system-out>
+</testcase>
+<testcase name="testRemoveKey()" classname="ejercicio7clase8.DictionaryTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.DictionaryTest]/[method:testRemoveKey()]
+display-name: testRemoveKey()
+]]></system-out>
+</testcase>
+<testcase name="testRemoveLeafNode()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testRemoveLeafNode()]
+display-name: testRemoveLeafNode()
+]]></system-out>
+</testcase>
+<testcase name="testAgregarMultiplesVertices()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testAgregarMultiplesVertices()]
+display-name: Test: agregarVertice() añade múltiples vértices
+]]></system-out>
+</testcase>
+<testcase name="testEliminarVerticeDelMedioDeLaCadena()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testEliminarVerticeDelMedioDeLaCadena()]
+display-name: Test: eliminarVertice() elimina un vértice del medio de una cadena
+]]></system-out>
+</testcase>
+<testcase name="testAgregarAristaNonExistentOrigin()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testAgregarAristaNonExistentOrigin()]
+display-name: Test: agregarArista() con origen inexistente lanza IllegalArgumentException
+]]></system-out>
+</testcase>
+<testcase name="testPutMultipleValuesForKey()" classname="ejercicio7clase8.DictionaryTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.DictionaryTest]/[method:testPutMultipleValuesForKey()]
+display-name: testPutMultipleValuesForKey()
+]]></system-out>
+</testcase>
+<testcase name="testRemoveRoot()" classname="ejercicio7clase8.ABBTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.ABBTest]/[method:testRemoveRoot()]
+display-name: testRemoveRoot()
+]]></system-out>
+</testcase>
+<testcase name="testRemoveNodeWithOneChild()" classname="ejercicio7clase8.ABBTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.ABBTest]/[method:testRemoveNodeWithOneChild()]
+display-name: testRemoveNodeWithOneChild()
+]]></system-out>
+</testcase>
+<testcase name="testGetNonExistentKey()" classname="ejercicio7clase8.DictionaryTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.DictionaryTest]/[method:testGetNonExistentKey()]
+display-name: testGetNonExistentKey()
+]]></system-out>
+</testcase>
+<testcase name="testLeftRotation()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testLeftRotation()]
+display-name: testLeftRotation()
+]]></system-out>
+</testcase>
+<testcase name="testVerticesAisladosMixto()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesAisladosMixto()]
+display-name: Test: verticesAislados() - Escenario Mixto
+]]></system-out>
+</testcase>
+<testcase name="testPesoAristaCorrecto()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testPesoAristaCorrecto()]
+display-name: Test: pesoArista() devuelve el peso correcto
+]]></system-out>
+</testcase>
+<testcase name="testCargarNotasConMultiplesValoresDeSalida()" classname="ejercicio2clase10.CargadorNotasImplTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.CargadorNotasImplTest]/[method:testCargarNotasConMultiplesValoresDeSalida()]
+display-name: testCargarNotasConMultiplesValoresDeSalida()
+]]></system-out>
+</testcase>
+<testcase name="testVerticesPuenteEmptyGraph()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesPuenteEmptyGraph()]
+display-name: Test: verticesPuente() con grafo vacío lanza excepción para origen
+]]></system-out>
+</testcase>
+<testcase name="testVerticesPuenteComplexGraph()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesPuenteComplexGraph()]
+display-name: Test: verticesPuente() - Grafo complejo
+]]></system-out>
+</testcase>
+<testcase name="testCargarNotasConEntradaVacia()" classname="ejercicio2clase10.CargadorNotasImplTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.CargadorNotasImplTest]/[method:testCargarNotasConEntradaVacia()]
+display-name: testCargarNotasConEntradaVacia()
+]]></system-out>
+</testcase>
+<testcase name="testNullKeyComparison()" classname="ejercicio7clase8.EntryTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.EntryTest]/[method:testNullKeyComparison()]
+display-name: testNullKeyComparison()
+]]></system-out>
+</testcase>
+<testcase name="testRemoveNull()" classname="ejercicio7clase8.ABBTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.ABBTest]/[method:testRemoveNull()]
+display-name: testRemoveNull()
+]]></system-out>
+</testcase>
+<testcase name="testRemoverTodosLosValoresDeUnaClave()" classname="ejercicio7clase8.DictionaryTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.DictionaryTest]/[method:testRemoverTodosLosValoresDeUnaClave()]
+display-name: testRemoverTodosLosValoresDeUnaClave()
+]]></system-out>
+</testcase>
+<testcase name="testPrintEmptyDictionary()" classname="ejercicio7clase8.DictionaryTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.DictionaryTest]/[method:testPrintEmptyDictionary()]
+display-name: testPrintEmptyDictionary()
+]]></system-out>
+</testcase>
+<testcase name="testCargarNotasConEspaciosEnBlanco()" classname="ejercicio2clase10.CargadorNotasImplTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.CargadorNotasImplTest]/[method:testCargarNotasConEspaciosEnBlanco()]
+display-name: testCargarNotasConEspaciosEnBlanco()
+]]></system-out>
+</testcase>
+<testcase name="testExisteAristaTrue()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testExisteAristaTrue()]
+display-name: Test: existeArista() devuelve true para arista existente
+]]></system-out>
+</testcase>
+<testcase name="testCompareTo()" classname="ejercicio7clase8.EntryTest" time="0.009">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.EntryTest]/[method:testCompareTo()]
+display-name: testCompareTo()
+]]></system-out>
+</testcase>
+<testcase name="testEmptyMateria()" classname="ejercicio2clase10.NotaImplTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.NotaImplTest]/[method:testEmptyMateria()]
+display-name: testEmptyMateria()
+]]></system-out>
+</testcase>
+<testcase name="testVerticesEmpty()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesEmpty()]
+display-name: Test: vertices() devuelve lista vacía para grafo vacío
+]]></system-out>
+</testcase>
+<testcase name="testCargarNotasConSoloValorDeSalida()" classname="ejercicio2clase10.CargadorNotasImplTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.CargadorNotasImplTest]/[method:testCargarNotasConSoloValorDeSalida()]
+display-name: testCargarNotasConSoloValorDeSalida()
+]]></system-out>
+</testcase>
+<testcase name="testCargarNotasConEntradaMuyLarga()" classname="ejercicio2clase10.CargadorNotasImplTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.CargadorNotasImplTest]/[method:testCargarNotasConEntradaMuyLarga()]
+display-name: testCargarNotasConEntradaMuyLarga()
+]]></system-out>
+</testcase>
+<testcase name="testCalcularPromedioConNotasDiez()" classname="ejercicio2clase10.GestorNotasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.GestorNotasTest]/[method:testCalcularPromedioConNotasDiez()]
+display-name: testCalcularPromedioConNotasDiez()
+]]></system-out>
+</testcase>
+<testcase name="testVerticesPuenteSinCaminoPosible()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesPuenteSinCaminoPosible()]
+display-name: Test: verticesPuente() sin camino posible entre origen y destino
+]]></system-out>
+</testcase>
+<testcase name="testPesoAristaNonExistent()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testPesoAristaNonExistent()]
+display-name: Test: pesoArista() lanza excepción si la arista no existe
+]]></system-out>
+</testcase>
+<testcase name="testAgregarVerticeSingle()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testAgregarVerticeSingle()]
+display-name: Test: agregarVertice() añade un vértice correctamente
+]]></system-out>
+</testcase>
+<testcase name="testVerticesPuenteNonExistentOrigin()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesPuenteNonExistentOrigin()]
+display-name: Test: verticesPuente() con origen inexistente lanza excepción
+]]></system-out>
+</testcase>
+<testcase name="testRemoveNull()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testRemoveNull()]
+display-name: testRemoveNull()
+]]></system-out>
+</testcase>
+<testcase name="testRemoveRoot()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testRemoveRoot()]
+display-name: testRemoveRoot()
+]]></system-out>
+</testcase>
+<testcase name="testToString()" classname="ejercicio2clase10.NotaImplTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.NotaImplTest]/[method:testToString()]
+display-name: testToString()
+]]></system-out>
+</testcase>
+<testcase name="testRemoveNodeWithOneChild()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testRemoveNodeWithOneChild()]
+display-name: testRemoveNodeWithOneChild()
+]]></system-out>
+</testcase>
+<testcase name="testEliminarUnicoVertice()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testEliminarUnicoVertice()]
+display-name: Test: eliminarVertice() elimina el único vértice en el grafo
+]]></system-out>
+</testcase>
+<testcase name="testPutAndGetSingleValue()" classname="ejercicio7clase8.DictionaryTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.DictionaryTest]/[method:testPutAndGetSingleValue()]
+display-name: testPutAndGetSingleValue()
+]]></system-out>
+</testcase>
+<testcase name="testConstructorConListaNula()" classname="ejercicio2clase10.GestorNotasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.GestorNotasTest]/[method:testConstructorConListaNula()]
+display-name: testConstructorConListaNula()
+]]></system-out>
+</testcase>
+<testcase name="testRemoveLeafNode()" classname="ejercicio7clase8.ABBTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.ABBTest]/[method:testRemoveLeafNode()]
+display-name: testRemoveLeafNode()
+]]></system-out>
+</testcase>
+<testcase name="testAlturaYBalanceDespuesDeRotacionSimpleDerecha()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testAlturaYBalanceDespuesDeRotacionSimpleDerecha()]
+display-name: testAlturaYBalanceDespuesDeRotacionSimpleDerecha()
+]]></system-out>
+</testcase>
+<testcase name="testRemoveNullValue()" classname="ejercicio7clase8.DictionaryTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.DictionaryTest]/[method:testRemoveNullValue()]
+display-name: testRemoveNullValue()
+]]></system-out>
+</testcase>
+<testcase name="testInvalidGradeBelowZero()" classname="ejercicio2clase10.NotaImplTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.NotaImplTest]/[method:testInvalidGradeBelowZero()]
+display-name: testInvalidGradeBelowZero()
+]]></system-out>
+</testcase>
+<testcase name="testAlturaYBalanceDespuesDeRotacionSimpleIzquierda()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testAlturaYBalanceDespuesDeRotacionSimpleIzquierda()]
+display-name: testAlturaYBalanceDespuesDeRotacionSimpleIzquierda()
+]]></system-out>
+</testcase>
+<testcase name="testVerticesMultiple()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesMultiple()]
+display-name: Test: vertices() devuelve todos los vértices agregados
+]]></system-out>
+</testcase>
+<testcase name="testVerticesAisladosAllConnected()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesAisladosAllConnected()]
+display-name: Test: verticesAislados() con todos los vértices conectados
+]]></system-out>
+</testcase>
+<testcase name="testEliminarAristaExistente()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testEliminarAristaExistente()]
+display-name: Test: eliminarArista() elimina una arista existente
+]]></system-out>
+</testcase>
+<testcase name="testGetNull()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testGetNull()]
+display-name: testGetNull()
+]]></system-out>
+</testcase>
+<testcase name="testExisteAristaFalse()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testExisteAristaFalse()]
+display-name: Test: existeArista() devuelve false para arista no existente
+]]></system-out>
+</testcase>
+<testcase name="testEliminarVerticeHoja()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testEliminarVerticeHoja()]
+display-name: Test: eliminarVertice() elimina un vértice hoja (sin aristas)
+]]></system-out>
+</testcase>
+<testcase name="testPrintDictionaryWithEmptyAVLs()" classname="ejercicio7clase8.DictionaryTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.DictionaryTest]/[method:testPrintDictionaryWithEmptyAVLs()]
+display-name: testPrintDictionaryWithEmptyAVLs()
+]]></system-out>
+</testcase>
+<testcase name="testAgregarAristaActualizaPeso()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testAgregarAristaActualizaPeso()]
+display-name: Test: agregarArista() actualiza el peso si la arista ya existe
+]]></system-out>
+</testcase>
+<testcase name="testVerticesPuenteDirectEdge()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesPuenteDirectEdge()]
+display-name: Test: verticesPuente() con arista directa entre origen y destino (no puente)
+]]></system-out>
+</testcase>
+<testcase name="testNullMateria()" classname="ejercicio2clase10.NotaImplTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.NotaImplTest]/[method:testNullMateria()]
+display-name: testNullMateria()
+]]></system-out>
+</testcase>
+<testcase name="testEliminarVerticeConAristasSalientes()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testEliminarVerticeConAristasSalientes()]
+display-name: Test: eliminarVertice() elimina un vértice con aristas salientes
+]]></system-out>
+</testcase>
+<testcase name="testInicializarAfterAddingElements()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testInicializarAfterAddingElements()]
+display-name: Test: inicializar() después de agregar elementos
+]]></system-out>
+</testcase>
+<testcase name="testLeftRightRotation()" classname="ejercicio6clase9.AVLTest" time="0.001">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testLeftRightRotation()]
+display-name: testLeftRightRotation()
+]]></system-out>
+</testcase>
+<testcase name="testRightRotation()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testRightRotation()]
+display-name: testRightRotation()
+]]></system-out>
+</testcase>
+<testcase name="testVerticesPuenteSameOriginDestination()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesPuenteSameOriginDestination()]
+display-name: Test: verticesPuente() cuando origen y destino son el mismo
+]]></system-out>
+</testcase>
+<testcase name="testNullValue()" classname="ejercicio7clase8.EntryTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.EntryTest]/[method:testNullValue()]
+display-name: testNullValue()
+]]></system-out>
+</testcase>
+<testcase name="testRemoveNonExistentKey()" classname="ejercicio7clase8.DictionaryTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.DictionaryTest]/[method:testRemoveNonExistentKey()]
+display-name: testRemoveNonExistentKey()
+]]></system-out>
+</testcase>
+<testcase name="testContainsNull()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testContainsNull()]
+display-name: testContainsNull()
+]]></system-out>
+</testcase>
+<testcase name="testInsertNull()" classname="ejercicio7clase8.ABBTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.ABBTest]/[method:testInsertNull()]
+display-name: testInsertNull()
+]]></system-out>
+</testcase>
+<testcase name="testPutNullKey()" classname="ejercicio7clase8.DictionaryTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.DictionaryTest]/[method:testPutNullKey()]
+display-name: testPutNullKey()
+]]></system-out>
+</testcase>
+<testcase name="testPutConValoresOrdenadosParaMismaClave()" classname="ejercicio7clase8.DictionaryTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.DictionaryTest]/[method:testPutConValoresOrdenadosParaMismaClave()]
+display-name: testPutConValoresOrdenadosParaMismaClave()
+]]></system-out>
+</testcase>
+<testcase name="testValidGradeZero()" classname="ejercicio2clase10.NotaImplTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.NotaImplTest]/[method:testValidGradeZero()]
+display-name: testValidGradeZero()
+]]></system-out>
+</testcase>
+<testcase name="testPutNullValue()" classname="ejercicio7clase8.DictionaryTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.DictionaryTest]/[method:testPutNullValue()]
+display-name: testPutNullValue()
+]]></system-out>
+</testcase>
+<testcase name="testAlturaYBalanceDespuesDeRotacionDobleIzquierdaDerecha()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testAlturaYBalanceDespuesDeRotacionDobleIzquierdaDerecha()]
+display-name: testAlturaYBalanceDespuesDeRotacionDobleIzquierdaDerecha()
+]]></system-out>
+</testcase>
+<testcase name="testEliminarVerticeWithIncomingEdges()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testEliminarVerticeWithIncomingEdges()]
+display-name: Test: eliminarVertice() elimina un vértice y sus aristas entrantes (complemento)
+]]></system-out>
+</testcase>
+<testcase name="testEliminarVerticeNonExistent()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testEliminarVerticeNonExistent()]
+display-name: Test: eliminarVertice() lanza excepción si el vértice no existe
+]]></system-out>
+</testcase>
+<testcase name="testExisteAristaNonExistentOrigin()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testExisteAristaNonExistentOrigin()]
+display-name: Test: existeArista() devuelve false para origen inexistente
+]]></system-out>
+</testcase>
+<testcase name="testGetOrderedArrayArbolVacio()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testGetOrderedArrayArbolVacio()]
+display-name: testGetOrderedArrayArbolVacio()
+]]></system-out>
+</testcase>
+<testcase name="testRemoveValue()" classname="ejercicio7clase8.DictionaryTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.DictionaryTest]/[method:testRemoveValue()]
+display-name: testRemoveValue()
+]]></system-out>
+</testcase>
+<testcase name="testCalcularPromedioConNotasCero()" classname="ejercicio2clase10.GestorNotasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.GestorNotasTest]/[method:testCalcularPromedioConNotasCero()]
+display-name: testCalcularPromedioConNotasCero()
+]]></system-out>
+</testcase>
+<testcase name="testCargarNotasConEntradaFueraDeRango()" classname="ejercicio2clase10.CargadorNotasImplTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.CargadorNotasImplTest]/[method:testCargarNotasConEntradaFueraDeRango()]
+display-name: testCargarNotasConEntradaFueraDeRango()
+]]></system-out>
+</testcase>
+<testcase name="testVerticesPuenteNoPath()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesPuenteNoPath()]
+display-name: Test: verticesPuente() - No hay path
+]]></system-out>
+</testcase>
+<testcase name="testConstructorAndGetters()" classname="ejercicio2clase10.NotaImplTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.NotaImplTest]/[method:testConstructorAndGetters()]
+display-name: testConstructorAndGetters()
+]]></system-out>
+</testcase>
+<testcase name="testAgregarVerticeNull()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testAgregarVerticeNull()]
+display-name: Test: agregarVertice() con valor nulo lanza IllegalArgumentException
+]]></system-out>
+</testcase>
+<testcase name="testGetExistingElement()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testGetExistingElement()]
+display-name: testGetExistingElement()
+]]></system-out>
+</testcase>
+<testcase name="testRemoveNodeWithTwoChildren()" classname="ejercicio7clase8.ABBTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.ABBTest]/[method:testRemoveNodeWithTwoChildren()]
+display-name: testRemoveNodeWithTwoChildren()
+]]></system-out>
+</testcase>
+<testcase name="testAgregarAristaSelfLoop()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testAgregarAristaSelfLoop()]
+display-name: Test: agregarArista() permite auto-bucles
+]]></system-out>
+</testcase>
+<testcase name="testCalcularPromedioConNotasDecimales()" classname="ejercicio2clase10.GestorNotasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.GestorNotasTest]/[method:testCalcularPromedioConNotasDecimales()]
+display-name: testCalcularPromedioConNotasDecimales()
+]]></system-out>
+</testcase>
+<testcase name="testCalcularPromedioConUnaSolaNota()" classname="ejercicio2clase10.GestorNotasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.GestorNotasTest]/[method:testCalcularPromedioConUnaSolaNota()]
+display-name: testCalcularPromedioConUnaSolaNota()
+]]></system-out>
+</testcase>
+<testcase name="testCargarNotasConEntradaValida()" classname="ejercicio2clase10.CargadorNotasImplTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.CargadorNotasImplTest]/[method:testCargarNotasConEntradaValida()]
+display-name: testCargarNotasConEntradaValida()
+]]></system-out>
+</testcase>
+<testcase name="testGetNonExistingElement()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testGetNonExistingElement()]
+display-name: testGetNonExistingElement()
+]]></system-out>
+</testcase>
+<testcase name="testInsertAndContains()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testInsertAndContains()]
+display-name: testInsertAndContains()
+]]></system-out>
+</testcase>
+<testcase name="testRemoveLastValueFromKey()" classname="ejercicio7clase8.DictionaryTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.DictionaryTest]/[method:testRemoveLastValueFromKey()]
+display-name: testRemoveLastValueFromKey()
+]]></system-out>
+</testcase>
+<testcase name="testVerticesAisladosOnlyOutgoing()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesAisladosOnlyOutgoing()]
+display-name: Test: verticesAislados() con vértices que solo tienen aristas salientes
+]]></system-out>
+</testcase>
+<testcase name="testCargarNotasConCeroYDiez()" classname="ejercicio2clase10.CargadorNotasImplTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.CargadorNotasImplTest]/[method:testCargarNotasConCeroYDiez()]
+display-name: testCargarNotasConCeroYDiez()
+]]></system-out>
+</testcase>
+<testcase name="testRemoveNullKey()" classname="ejercicio7clase8.DictionaryTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.DictionaryTest]/[method:testRemoveNullKey()]
+display-name: testRemoveNullKey()
+]]></system-out>
+</testcase>
+<testcase name="testInvalidGradeAboveTen()" classname="ejercicio2clase10.NotaImplTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio2clase10.NotaImplTest]/[method:testInvalidGradeAboveTen()]
+display-name: testInvalidGradeAboveTen()
+]]></system-out>
+</testcase>
+<testcase name="testContainsNull()" classname="ejercicio7clase8.ABBTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.ABBTest]/[method:testContainsNull()]
+display-name: testContainsNull()
+]]></system-out>
+</testcase>
+<testcase name="testVerticesPuenteNonExistentDestination()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesPuenteNonExistentDestination()]
+display-name: Test: verticesPuente() con destino inexistente lanza excepción
+]]></system-out>
+</testcase>
+<testcase name="testRemoveNonExistent()" classname="ejercicio6clase9.AVLTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio6clase9.AVLTest]/[method:testRemoveNonExistent()]
+display-name: testRemoveNonExistent()
+]]></system-out>
+</testcase>
+<testcase name="testVerticesAfterAddRemove()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testVerticesAfterAddRemove()]
+display-name: Test: vertices() después de agregar y eliminar algunos
+]]></system-out>
+</testcase>
+<testcase name="testAgregarVerticeDuplicado()" classname="ejercicio3clase10.GrafoListasTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio3clase10.GrafoListasTest]/[method:testAgregarVerticeDuplicado()]
+display-name: Test: agregarVertice() no agrega vértices duplicados
+]]></system-out>
+</testcase>
+<testcase name="testPutAfterRemoveKey()" classname="ejercicio7clase8.DictionaryTest" time="0">
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]/[class:ejercicio7clase8.DictionaryTest]/[method:testPutAfterRemoveKey()]
+display-name: testPutAfterRemoveKey()
+]]></system-out>
+</testcase>
+<system-out><![CDATA[
+unique-id: [engine:junit-jupiter]
+display-name: JUnit Jupiter
+]]></system-out>
+</testsuite>

@@ -41,4 +41,17 @@ public interface ABBTDA<E extends Comparable<E>> {
      * @return Una cadena que representa los elementos del ABB en orden ascendente.
      */
     String inOrder();
+
+    /**
+     * Obtiene un elemento del ABB.
+     * @param element El elemento a buscar.
+     * @return El elemento encontrado, o null si no existe.
+     */
+    E get(E element);
+
+    /**
+     * Realiza una acción para cada elemento del árbol en orden in-order.
+     * @param action La acción a realizar para cada elemento.
+     */
+    void forEachInOrder(java.util.function.Consumer<E> action);
 }
