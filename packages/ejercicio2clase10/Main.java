@@ -1,7 +1,5 @@
 package ejercicio2clase10;
 
-import ejercicio3clase10.ImplementacionHashSet;
-
 public class Main {
     public static void main(String[] args) {
         GrafoMatriz<String> grafo = new GrafoMatriz<>(10);
@@ -56,8 +54,16 @@ public class Main {
         System.out.println("╚════════════════════════════════════════════╝\n");
         
         for (String v : vertices) {
-            ImplementacionHashSet<String> preds = grafo.predecesores(v);
-            System.out.printf("Vértice %s → Predecesores: %s\n", v, preds.isEmpty() ? "(ninguno)" : preds);
+            String[] preds = grafo.predecesores(v);
+            System.out.printf("Vértice %s → Predecesores: ", v);
+            if (preds.length == 0) {
+                System.out.println("(ninguno)");
+            } else {
+                for (int i = 0; i < preds.length; i++) {
+                    System.out.print(preds[i] + (i == preds.length - 1 ? "" : ", "));
+                }
+                System.out.println();
+            }
         }
     }
 }

@@ -1,5 +1,8 @@
 package ejercicio7clase8;
 
+import ejercicio7clase8.IterableTDA;
+import ejercicio7clase8.IteratorTDA;
+
 // ============================================
 // IMPLEMENTACIÓN ABB
 // ============================================
@@ -94,11 +97,13 @@ public class ABB<E extends Comparable<E>> implements ABBTDA<E> {
      * {@inheritDoc}
      */
     @Override
-    public void remove(E element) {
+    public E remove(E element) {
         if (element == null) {
             throw new NullPointerException("No se permite eliminar elementos nulos del ABB.");
         }
-        root = removeRecursive(root, element);
+        E[] removedElement = (E[]) new Comparable[1]; // Array to hold the removed element
+        root = removeRecursive(root, element, removedElement);
+        return removedElement[0];
     }
 
     /**
@@ -107,7 +112,7 @@ public class ABB<E extends Comparable<E>> implements ABBTDA<E> {
      * @param element El elemento a eliminar.
      * @return La raíz del subárbol modificado.
      */
-    private NodeABB<E> removeRecursive(NodeABB<E> node, E element) {
+    private NodeABB<E> removeRecursive(NodeABB<E> node, E element, E[] removedElement) {
         if (node == null) {
             return null;
         }
@@ -115,11 +120,12 @@ public class ABB<E extends Comparable<E>> implements ABBTDA<E> {
         int comparison = element.compareTo(node.getValue());
 
         if (comparison < 0) {
-            node.setLeft(removeRecursive(node.getLeft(), element));
+            node.setLeft(removeRecursive(node.getLeft(), element, removedElement));
         } else if (comparison > 0) {
-            node.setRight(removeRecursive(node.getRight(), element));
+            node.setRight(removeRecursive(node.getRight(), element, removedElement));
         } else {
             // Nodo encontrado
+            removedElement[0] = node.getValue(); // Store the removed element
             // Caso 1: Nodo sin hijos o con un solo hijo
             if (node.getLeft() == null && node.getRight() == null) {
                 return null;
@@ -134,7 +140,7 @@ public class ABB<E extends Comparable<E>> implements ABBTDA<E> {
             // Caso 2: Nodo con dos hijos
             NodeABB<E> successor = findMin(node.getRight());
             node.setValue(successor.getValue());
-            node.setRight(removeRecursive(node.getRight(), successor.getValue()));
+            node.setRight(removeRecursive(node.getRight(), successor.getValue(), removedElement));
         }
 
         return node;
@@ -176,37 +182,39 @@ public class ABB<E extends Comparable<E>> implements ABBTDA<E> {
     }
 
     @Override
-    public E get(E element) {
-        if (element == null) {
-            throw new NullPointerException("No se permite buscar elementos nulos en el ABB.");
+    public IteratorTDA<E> iterator() {
+        return new ABBIterator();
+    }
+
+    private class ABBIterator implements IteratorTDA<E> {
+        private CustomStack<NodeABB<E>> stack;
+
+        public ABBIterator() {
+            stack = new CustomStack<>();
+            pushLeft(root);
         }
-        return getRecursive(root, element);
-    }
 
-    private E getRecursive(NodeABB<E> node, E element) {
-        if (node == null) {
-            return null;
+        private void pushLeft(NodeABB<E> node) {
+            while (node != null) {
+                stack.push(node);
+                node = node.getLeft();
+            }
         }
-        int comparison = element.compareTo(node.getValue());
-        if (comparison == 0) return node.getValue();
-        else if (comparison < 0) return getRecursive(node.getLeft(), element);
-        else return getRecursive(node.getRight(), element);
-    }
 
-    @Override
-    public void forEachInOrder(ImplementacionConsumer<E> action) {
-        forEachInOrderRecursive(root, action);
-    }
-
-    private void forEachInOrderRecursive(NodeABB<E> node, ImplementacionConsumer<E> action) {
-        if (node != null) {
-            forEachInOrderRecursive(node.getLeft(), action);
-            action.accept(node.getValue());
-            forEachInOrderRecursive(node.getRight(), action);
+        @Override
+        public boolean hasNext() {
+            return !stack.isEmpty();
         }
-    }
 
-    public NodeABB<E> getRoot() {
-        return root;
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new RuntimeException("No such element");
+            }
+            NodeABB<E> node = stack.pop();
+            E result = node.getValue();
+            pushLeft(node.getRight());
+            return result;
+        }
     }
 }

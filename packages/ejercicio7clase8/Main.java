@@ -37,32 +37,57 @@ public class Main {
 
         // Mostrar el diccionario
         System.out.println("\n2. Estado del diccionario:");
-        dictionary.printDictionary();
 
         // Consultar valores de una clave
         System.out.println("\n3. Consultando valores de 'frutas':");
-        ABBTDA<Integer> frutasABB = dictionary.get("frutas");
-        if (frutasABB != null) {
-            System.out.println("   In-order: " + frutasABB.inOrder());
+        IterableTDA<Integer> frutasIterable = dictionary.get("frutas");
+        if (frutasIterable != null) {
+            System.out.print("   Valores: ");
+            IteratorTDA<Integer> it = frutasIterable.iterator();
+            while (it.hasNext()) {
+                System.out.print(it.next() + " ");
+            }
+            System.out.println();
         }
 
         // Verificar si contiene un valor
         System.out.println("\n4. Verificando si 'frutas' contiene el valor 8:");
-        System.out.println("   Resultado: " + frutasABB.contains(8));
+        boolean contains8 = false;
+        IteratorTDA<Integer> it8 = frutasIterable.iterator();
+        while (it8.hasNext()) {
+            if (it8.next().equals(8)) {
+                contains8 = true;
+                break;
+            }
+        }
+        System.out.println("   Resultado: " + contains8);
         
         System.out.println("   Verificando si 'frutas' contiene el valor 100:");
-        System.out.println("   Resultado: " + frutasABB.contains(100));
+        boolean contains100 = false;
+        IteratorTDA<Integer> it100 = frutasIterable.iterator();
+        while (it100.hasNext()) {
+            if (it100.next().equals(100)) {
+                contains100 = true;
+                break;
+            }
+        }
+        System.out.println("   Resultado: " + contains100);
 
         // Eliminar un valor específico
         System.out.println("\n5. Eliminando el valor 2 de 'frutas'...");
         dictionary.remove("frutas", 2);
-        System.out.println("   Valores actuales: " + dictionary.get("frutas").inOrder());
+        System.out.print("   Valores actuales: ");
+        IteratorTDA<Integer> itRemove = dictionary.get("frutas").iterator();
+        while (itRemove.hasNext()) {
+            System.out.print(itRemove.next() + " ");
+        }
+        System.out.println();
 
         // Eliminar una clave completa
         System.out.println("\n6. Eliminando la clave 'letras' completa...");
         dictionary.remove("letras");
         
         System.out.println("\n7. Estado final del diccionario:");
-        dictionary.printDictionary();
+
     }
 }
